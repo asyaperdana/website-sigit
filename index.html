@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Sigit Setengah Kopling</title>
+
+  <!-- Tailwind CSS Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Portfolio Sigit Setengah Kopling - Calon Programmer Handal">
+  <meta name="keywords" content="Portfolio, Programmer, Web Developer">
+  <meta name="author" content="Sigit Setengah Kopling">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { transition: background-color 0.5s ease, color 0.5s ease; }
+    #darkModeToggle { transition: background-color 0.3s ease, color 0.3s ease; }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans dark:bg-gray-900 dark:text-white">
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle" class="fixed bottom-4 right-4 bg-gray-700 text-white px-4 py-2 rounded shadow-lg hover:bg-gray-600 transition flex items-center gap-2">
+    <span id="darkIcon">🌙</span> Mode
+  </button>
+
+  <!-- Header -->
+  <header class="relative h-72 bg-center bg-cover flex items-center justify-center" style="background-image: url('img/meme-guy.jpeg');">
+    <div class="relative z-10 text-center text-white" data-aos="fade-up">
+      <h1 class="text-4xl font-bold mb-2">Sigit Setengah Kopling</h1>
+      <p class="text-lg mb-4">Si Tampan dari Pulau Jawa</p>
+      <a href="#about" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md transition">Lihat Profil</a>
+    </div>
+  </header>
+
+  <!-- Tentang Saya -->
+  <section id="about" class="max-w-3xl mx-auto px-4 py-8 text-center bg-white dark:bg-gray-800 rounded-lg shadow-md mt-8" data-aos="fade-up">
+    <img src="img/roll-safe-profile.jpg" alt="Foto Profil" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+    <h2 class="text-2xl font-bold mb-4">Tentang Saya</h2>
+    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+      Calon Programmer dari PT. Jhawa Jyujyur yang berdomisili di Sigmarang, Jawa Selatan.
+      Memiliki keahlian sebagai penghibur dan penyemangat hidup. Menyukai
+      <a href="#" class="underline decoration-green-700 hover:text-green-700 transition font-bold">matcha dan kwetiau</a>
+      khususnya buatan ibu tercinta.
+    </p>
+    <p class="italic text-gray-500 dark:text-gray-400">(berhati-hatilah para wanita)</p>
+    <div class="mt-6 flex justify-center gap-4">
+      <a href="mailto:asyaperdanaa@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition">Hire Me</a>
+      <a href="cv.pdf" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md transition">Download CV</a>
+    </div>
+  </section>
+
+  <!-- Keahlian -->
+  <section class="max-w-3xl mx-auto px-4 py-8 mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md" data-aos="fade-up">
+    <h2 class="text-2xl font-bold mb-6 text-center">Keahlian Saya</h2>
+    <div class="space-y-4">
+      <div>
+        <p>HTML</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+          <div class="bg-green-500 h-2 rounded-full" style="width: 75%;"></div>
+        </div>
+      </div>
+      <div>
+        <p>CSS</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+          <div class="bg-blue-500 h-2 rounded-full" style="width: 50%;"></div>
+        </div>
+      </div>
+      <div>
+        <p>JavaScript</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+          <div class="bg-yellow-500 h-2 rounded-full" style="width: 25%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Riwayat Hidup -->
+  <section class="bg-green-100 py-6 mt-6 dark:bg-green-900">
+    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank" class="block text-center text-lg font-bold text-green-800 dark:text-green-300 hover:text-green-600 transition">
+      Riwayat Hidup Mas Sigit
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6 mt-8">
+    <div class="flex justify-center gap-6 mb-4">
+      <a href="https://www.facebook.com/DPRRI/" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-125">
+        <i class="fab fa-facebook-f text-2xl"></i>
+      </a>
+      <a href="https://twitter.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-sky-500 transition transform hover:scale-125">
+        <i class="fab fa-twitter text-2xl"></i>
+      </a>
+      <a href="https://instagram.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-125">
+        <i class="fab fa-instagram text-2xl"></i>
+      </a>
+      <a href="https://github.com/asyaperdana" target="_blank" class="text-gray-400 hover:text-gray-300 transition transform hover:scale-125">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+    </div>
+    <p class="text-center text-gray-500 text-sm">© 2025 Sigit Setengah Kopling. All Rights Reserved.</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- Dark Mode Script -->
+  <script>
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const darkIcon = document.getElementById('darkIcon');
+    const html = document.documentElement;
+
+    // Auto detect system theme
+    if (localStorage.getItem('theme') === 'dark' || 
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+      darkIcon.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      if (html.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        darkIcon.textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        darkIcon.textContent = '🌙';
+      }
+    });
+  </script>
+</body>
+</html>
