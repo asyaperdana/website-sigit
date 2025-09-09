@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio Sigit Setengah Kopling</title>
 
-  <!-- Tailwind CSS Config -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class'
-    }
-  </script>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <!-- Google Font -->
@@ -30,15 +25,22 @@
   <style>
     html { scroll-behavior: smooth; }
     body { transition: background-color 0.5s ease, color 0.5s ease; }
-    #darkModeToggle { transition: background-color 0.3s ease, color 0.3s ease; }
+
+    /* Animasi gradient premium */
+    .gradient-premium {
+      background: linear-gradient(270deg, #6D28D9, #2563EB, #EC4899);
+      background-size: 600% 600%;
+      animation: gradientMove 8s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
   </style>
 </head>
-<body class="bg-gray-100 font-sans dark:bg-gray-900 dark:text-white">
-
-  <!-- Dark Mode Toggle -->
-  <button id="darkModeToggle" class="fixed bottom-4 right-4 bg-gray-700 text-white px-4 py-2 rounded shadow-lg hover:bg-gray-600 transition flex items-center gap-2">
-    <span id="darkIcon">🌙</span> Mode
-  </button>
+<body class="bg-gray-100 font-sans text-gray-900">
 
   <!-- Header -->
   <header class="relative h-72 bg-center bg-cover flex items-center justify-center" style="background-image: url('img/meme-guy.jpeg');">
@@ -49,42 +51,42 @@
     </div>
   </header>
 
-  <!-- Tentang Saya -->
-  <section id="about" class="max-w-3xl mx-auto px-4 py-8 text-center bg-white dark:bg-gray-800 rounded-lg shadow-md mt-8" data-aos="fade-up">
-    <img src="img/roll-safe-profile.jpg" alt="Foto Profil" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
-    <h2 class="text-2xl font-bold mb-4">Tentang Saya</h2>
-    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+  <!-- Tentang Saya dengan Gradient -->
+  <section id="about" class="max-w-3xl mx-auto px-6 py-10 text-center rounded-lg shadow-2xl mt-10 gradient-premium text-white" data-aos="fade-up">
+    <img src="img/roll-safe-profile.jpg" alt="Foto Profil" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg border-4 border-white">
+    <h2 class="text-3xl font-extrabold mb-4">Tentang Saya</h2>
+    <p class="text-lg leading-relaxed mb-4">
       Calon Programmer dari PT. Jhawa Jyujyur yang berdomisili di Sigmarang, Jawa Selatan.
       Memiliki keahlian sebagai penghibur dan penyemangat hidup. Menyukai
-      <a href="#" class="underline decoration-green-700 hover:text-green-700 transition font-bold">matcha dan kwetiau</a>
+      <a href="#" class="underline decoration-white hover:text-yellow-200 transition font-bold">matcha dan kwetiau</a>
       khususnya buatan ibu tercinta.
     </p>
-    <p class="italic text-gray-500 dark:text-gray-400">(berhati-hatilah para wanita)</p>
+    <p class="italic text-gray-200 mb-6">(berhati-hatilah para wanita)</p>
     <div class="mt-6 flex justify-center gap-4">
-      <a href="mailto:asyaperdanaa@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition">Hire Me</a>
-      <a href="cv.pdf" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md transition">Download CV</a>
+      <a href="mailto:asyaperdanaa@gmail.com" class="bg-white text-purple-700 font-bold px-4 py-2 rounded-lg shadow-md transition hover:bg-yellow-200">Hire Me</a>
+      <a href="cv.pdf" class="bg-white text-blue-700 font-bold px-4 py-2 rounded-lg shadow-md transition hover:bg-pink-200">Download CV</a>
     </div>
   </section>
 
   <!-- Keahlian -->
-  <section class="max-w-3xl mx-auto px-4 py-8 mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md" data-aos="fade-up">
+  <section class="max-w-3xl mx-auto px-4 py-8 mt-8 bg-white rounded-lg shadow-md" data-aos="fade-up">
     <h2 class="text-2xl font-bold mb-6 text-center">Keahlian Saya</h2>
     <div class="space-y-4">
       <div>
         <p>HTML</p>
-        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+        <div class="w-full bg-gray-200 rounded-full h-2">
           <div class="bg-green-500 h-2 rounded-full" style="width: 75%;"></div>
         </div>
       </div>
       <div>
         <p>CSS</p>
-        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+        <div class="w-full bg-gray-200 rounded-full h-2">
           <div class="bg-blue-500 h-2 rounded-full" style="width: 50%;"></div>
         </div>
       </div>
       <div>
         <p>JavaScript</p>
-        <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+        <div class="w-full bg-gray-200 rounded-full h-2">
           <div class="bg-yellow-500 h-2 rounded-full" style="width: 25%;"></div>
         </div>
       </div>
@@ -92,8 +94,8 @@
   </section>
 
   <!-- Riwayat Hidup -->
-  <section class="bg-green-100 py-6 mt-6 dark:bg-green-900">
-    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank" class="block text-center text-lg font-bold text-green-800 dark:text-green-300 hover:text-green-600 transition">
+  <section class="bg-green-100 py-6 mt-6">
+    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank" class="block text-center text-lg font-bold text-green-800 hover:text-green-600 transition">
       Riwayat Hidup Mas Sigit
     </a>
   </section>
@@ -121,29 +123,5 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init();</script>
 
-  <!-- Dark Mode Script -->
-  <script>
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const darkIcon = document.getElementById('darkIcon');
-    const html = document.documentElement;
-
-    // Auto detect system theme
-    if (localStorage.getItem('theme') === 'dark' || 
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      html.classList.add('dark');
-      darkIcon.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      if (html.classList.contains('dark')) {
-        localStorage.setItem('theme', 'dark');
-        darkIcon.textContent = '☀️';
-      } else {
-        localStorage.setItem('theme', 'light');
-        darkIcon.textContent = '🌙';
-      }
-    });
-  </script>
 </body>
 </html>
