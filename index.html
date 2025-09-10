@@ -17,54 +17,127 @@
   <!-- AOS Animation -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
-  <!-- SEO Meta -->
-  <meta name="description" content="Portfolio Sigit Setengah Kopling - Calon Programmer Handal">
-  <meta name="keywords" content="Portfolio, Programmer, Web Developer">
-  <meta name="author" content="Sigit Setengah Kopling">
-
   <style>
     html { scroll-behavior: smooth; }
-    body { transition: background-color 0.5s ease, color 0.5s ease; }
-
-    /* Animasi gradient premium */
-    .gradient-premium {
-      background: linear-gradient(270deg, #6D28D9, #2563EB, #EC4899);
-      background-size: 600% 600%;
-      animation: gradientMove 8s ease infinite;
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    @keyframes gradientMove {
+    /* Parallax effect */
+    .parallax-header {
+      background-image: url('img/africanguy.jpg');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 18rem; /* sama dengan h-72 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Overlay agar teks tetap jelas */
+    .parallax-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+      z-index: 1;
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      text-align: center;
+    }
+
+    /* Gradient premium */
+    .gradient-premium {
+      background: linear-gradient(-45deg, #6D28D9, #2563EB, #EC4899, #10B981);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Glass effect untuk lapisan atas */
+    /* Glass effect */
     .glass {
       background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Tombol interaktif */
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 300%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Social hover */
+    .social-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.3) rotate(8deg);
     }
   </style>
 </head>
 <body class="bg-gray-100 font-sans text-gray-900">
 
-  <!-- Header -->
-  <header class="relative h-72 bg-center bg-cover flex items-center justify-center" style="background-image: url('img/meme-guy.jpeg'); background-size: cover;">
-    <div class="relative z-10 text-center text-white" data-aos="fade-up">
+  <!-- Header dengan Parallax -->
+  <header class="parallax-header">
+    <div class="parallax-content" data-aos="fade-up">
       <h1 class="text-4xl font-bold mb-2">Sigit Setengah Kopling</h1>
       <p class="text-lg mb-4">Si Tampan dari Pulau Jawa</p>
-      <a href="#about" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md transition">Lihat Profil</a>
+      <a href="#about" class="btn bg-green-500 hover:bg-green-600 text-white px-6 py-2 shadow-md">Lihat Profil</a>
     </div>
   </header>
 
-  <!-- Tentang Saya (Gradient + Glass) -->
+  <!-- Tentang Saya -->
   <section id="about" class="max-w-3xl mx-auto px-6 py-10 mt-10 rounded-2xl shadow-2xl gradient-premium relative overflow-hidden" data-aos="fade-up">
     <div class="glass text-white">
-      <img src="img/roll-safe-profile.jpg" alt="Foto Profil" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg border-4 border-white">
+      <img src="img/roll-safe-profile.jpg" alt="Foto Profil" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg border-4 border-white hover:scale-110 transition">
       <h2 class="text-3xl font-extrabold text-center mb-4">Seputar Sigit</h2>
       <p class="text-lg leading-relaxed text-center mb-4">
         Calon Programmer dari PT. Jhawa Jyujyur yang berdomisili di Sigmarang, Jawa Selatan.
@@ -74,8 +147,8 @@
       </p>
       <p class="italic text-center text-gray-200 mb-6">(berhati-hatilah para wanita)</p>
       <div class="mt-6 flex justify-center gap-4">
-        <a href="mailto:asyaperdanaa@gmail.com" class="bg-white text-purple-700 font-bold px-4 py-2 rounded-lg shadow-md transition hover:bg-yellow-200">Hire Me</a>
-        <a href="cv.pdf" class="bg-white text-blue-700 font-bold px-4 py-2 rounded-lg shadow-md transition hover:bg-pink-200">Download CV</a>
+        <a href="mailto:asyaperdanaa@gmail.com" class="btn bg-white text-purple-700 font-bold px-4 py-2 hover:bg-yellow-200">Hire Me</a>
+        <a href="cv.pdf" class="btn bg-white text-blue-700 font-bold px-4 py-2 hover:bg-pink-200">Download CV</a>
       </div>
     </div>
   </section>
@@ -87,44 +160,47 @@
       <div>
         <p>HTML</p>
         <div class="w-full bg-gray-200 rounded-full h-2">
-          <div class="bg-green-500 h-2 rounded-full" style="width: 75%;"></div>
+          <div class="bg-green-500 h-2 rounded-full transition-all duration-700" style="width: 75%;"></div>
         </div>
       </div>
       <div>
         <p>CSS</p>
         <div class="w-full bg-gray-200 rounded-full h-2">
-          <div class="bg-blue-500 h-2 rounded-full" style="width: 50%;"></div>
+          <div class="bg-blue-500 h-2 rounded-full transition-all duration-700" style="width: 50%;"></div>
         </div>
       </div>
       <div>
         <p>JavaScript</p>
         <div class="w-full bg-gray-200 rounded-full h-2">
-          <div class="bg-yellow-500 h-2 rounded-full" style="width: 25%;"></div>
+          <div class="bg-yellow-500 h-2 rounded-full transition-all duration-700" style="width: 25%;"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Riwayat Hidup -->
-  <section class="bg-green-100 py-6 mt-6">
-    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank" class="block text-center text-lg font-bold text-green-800 hover:text-green-600 transition">
-      Riwayat Hidup Mas Sigit
+  <section class="bg-green-100 py-10 mt-6 text-center">
+    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank"
+      class="inline-flex items-center gap-3 px-8 py-4 text-lg font-bold text-white bg-green-600 rounded-full shadow-lg transform transition hover:bg-green-700 hover:scale-105 hover:shadow-xl relative overflow-hidden">
+      <i class="fas fa-scroll text-2xl animate-bounce"></i>
+      <span>Riwayat Hidup Mas Sigit</span>
     </a>
   </section>
+
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-6 mt-8">
     <div class="flex justify-center gap-6 mb-4">
-      <a href="https://www.facebook.com/DPRRI/" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-125">
+      <a href="https://www.facebook.com/DPRRI/" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform social-icon">
         <i class="fab fa-facebook-f text-2xl"></i>
       </a>
-      <a href="https://twitter.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-sky-500 transition transform hover:scale-125">
+      <a href="https://twitter.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-sky-500 transition transform social-icon">
         <i class="fab fa-twitter text-2xl"></i>
       </a>
-      <a href="https://instagram.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-125">
+      <a href="https://instagram.com/dpr_ri" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform social-icon">
         <i class="fab fa-instagram text-2xl"></i>
       </a>
-      <a href="https://github.com/asyaperdana" target="_blank" class="text-gray-400 hover:text-green-700 transition transform hover:scale-125">
+      <a href="https://github.com/asyaperdana" target="_blank" class="text-gray-400 hover:text-green-700 transition transform social-icon">
         <i class="fab fa-github text-2xl"></i>
       </a>
     </div>
@@ -133,7 +209,7 @@
 
   <!-- AOS Script -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init();</script>
+  <script>AOS.init({ once: true, duration: 1000 });</script>
 
 </body>
 </html>
