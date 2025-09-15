@@ -8,8 +8,8 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,11 +17,19 @@
   <!-- AOS Animation -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f1117;
       color: #e5e7eb;
+    }
+
+    /* Heading pakai Montserrat */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
     }
 
     /* Header parallax */
@@ -106,6 +114,46 @@
       transform: scale(1.2);
       color: #60a5fa;
     }
+
+    /* Custom Swiper Navigation */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      transform: scale(1.2) rotate(8deg);
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      box-shadow: 0 0 18px rgba(139, 92, 246, 0.8);
+    }
+
+    /* Animasi Pulse Glow */
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 6px rgba(139, 92, 246, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 14px rgba(139, 92, 246, 0.7);
+      }
+    }
   </style>
 </head>
 <body>
@@ -137,76 +185,82 @@
     </div>
   </section>
 
-<!-- Keahlian -->
-<section class="max-w-3xl mx-auto px-4 py-8 mt-8" data-aos="fade-up">
-  <div class="glass">
-    <h2 class="text-2xl font-bold mb-6 text-center text-white">Keahlian Sigit</h2>
-    <div class="space-y-6">
-      <div>
-        <p class="mb-1 text-gray-300">Coding</p>
-        <div class="skill-bar">
-          <div class="skill-fill bg-green-500" style="width: 75%;"></div>
+  <!-- Keahlian -->
+  <section class="max-w-3xl mx-auto px-4 py-8 mt-8" data-aos="fade-up">
+    <div class="glass">
+      <h2 class="text-2xl font-bold mb-6 text-center text-white">Keahlian Sigit</h2>
+      <div class="space-y-6">
+        <div>
+          <p class="mb-1 text-gray-300">Coding</p>
+          <div class="skill-bar">
+            <div class="skill-fill bg-green-500" style="width: 75%;"></div>
+          </div>
         </div>
-      </div>
-      <div>
-        <p class="mb-1 text-gray-300">Building Relations</p>
-        <div class="skill-bar">
-          <div class="skill-fill bg-blue-500" style="width: 67%;"></div>
+        <div>
+          <p class="mb-1 text-gray-300">Building Relations</p>
+          <div class="skill-bar">
+            <div class="skill-fill bg-blue-500" style="width: 67%;"></div>
+          </div>
         </div>
-      </div>
-      <div>
-        <p class="mb-1 text-gray-300">Memikat Hati Wanita</p>
-        <div class="skill-bar">
-          <div class="skill-fill bg-pink-500" style="width: 100%;"></div>
+        <div>
+          <p class="mb-1 text-gray-300">Memikat Hati Wanita</p>
+          <div class="skill-bar">
+            <div class="skill-fill bg-pink-500" style="width: 100%;"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Komentar / Review -->
-<section class="max-w-3xl mx-auto px-4 py-10 mt-8" data-aos="fade-up">
-  <div class="glass">
-    <h2 class="text-2xl font-bold mb-6 text-center text-white">Komentar Teman-Teman</h2>
-    <div class="space-y-6">
+  <!-- Komentar / Review dengan Swiper Carousel -->
+  <section class="max-w-4xl mx-auto px-4 py-10 mt-8" data-aos="fade-up">
+    <div class="glass">
+      <h2 class="text-2xl font-bold mb-6 text-center text-white">Komentar Teman-Teman</h2>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
 
-      <!-- Review 1 -->
-      <div class="bg-white/5 p-4 rounded-xl shadow-md border border-white/10">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-yellow-400 text-lg">
-            ★★★★★
-          </span>
-          <p class="text-sm text-gray-400">oleh <span class="font-semibold text-white">Syamsudin</span></p>
+          <!-- Review 1 -->
+          <div class="swiper-slide">
+            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
+              <img src="https://i.pravatar.cc/100?img=11" alt="Syamsudin"
+                   class="w-16 h-16 rounded-full border-2 border-yellow-400 mx-auto mb-3">
+              <span class="text-yellow-400">★★★★★</span>
+              <p class="text-gray-300 mt-2">"Bintang 5, sangat baik dan produktif. Selalu jadi penghibur di tim!"</p>
+              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Syamsudin</span></p>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="swiper-slide">
+            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
+              <img src="https://i.pravatar.cc/100?img=32" alt="Eko"
+                   class="w-16 h-16 rounded-full border-2 border-pink-400 mx-auto mb-3">
+              <span class="text-yellow-400">★★★★★</span>
+              <p class="text-gray-300 mt-2">"Mas Sigit orangnya rajin, cepat tanggap, dan enak diajak kerja sama."</p>
+              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Eko Wibowo</span></p>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="swiper-slide">
+            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
+              <img src="https://i.pravatar.cc/100?img=45" alt="Fajar"
+                   class="w-16 h-16 rounded-full border-2 border-blue-400 mx-auto mb-3">
+              <span class="text-yellow-400">★★★★☆</span>
+              <p class="text-gray-300 mt-2">"Kalcer banget, cuman kadang suka terlalu humble 😅."</p>
+              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Fajar Subuh</span></p>
+            </div>
+          </div>
+
         </div>
-        <p class="text-gray-300">"Bintang 5, sangat baik dan produktif. Selalu jadi penghibur di tim!"</p>
-      </div>
 
-      <!-- Review 2 -->
-      <div class="bg-white/5 p-4 rounded-xl shadow-md border border-white/10">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-yellow-400 text-lg">
-            ★★★★★
-          </span>
-          <p class="text-sm text-gray-400">oleh <span class="font-semibold text-white">Eko Wibowo</span></p>
-        </div>
-        <p class="text-gray-300">"Mas Sigit orangnya rajin, cepat tanggap, dan enak diajak kerja sama."</p>
+        <!-- Pagination & Navigation -->
+        <div class="swiper-pagination mt-4"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
-
-      <!-- Review 3 -->
-      <div class="bg-white/5 p-4 rounded-xl shadow-md border border-white/10">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-yellow-400 text-lg">
-            ★★★★☆
-          </span>
-          <p class="text-sm text-gray-400">oleh <span class="font-semibold text-white">Fajar Subuh</span></p>
-        </div>
-        <p class="text-gray-300">"Kalcer banget, cuman kadang suka terlalu humble 😅."</p>
-      </div>
-
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Riwayat Hidup -->
   <section class="py-10 mt-6 text-center">
@@ -232,5 +286,31 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        320: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  </script>
 </body>
 </html>
