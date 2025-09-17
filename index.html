@@ -17,35 +17,33 @@
   <!-- AOS Animation -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f1117;
       color: #e5e7eb;
     }
-
-    /* Heading pakai Montserrat */
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* Header parallax */
+    /* Hero section */
     .parallax-header {
-      background-image: url('img/africanguy.jpg');
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      position: relative;
       height: 18rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      overflow: hidden;
     }
-
+    .parallax-header picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
     .parallax-header::before {
       content: "";
       position: absolute;
@@ -53,12 +51,11 @@
       background: linear-gradient(180deg, rgba(15,17,23,0.8), rgba(15,17,23,0.6));
       z-index: 1;
     }
-
     .parallax-content {
       position: relative;
       z-index: 2;
-      color: #fff;
       text-align: center;
+      color: #fff;
     }
 
     /* Glass card */
@@ -91,17 +88,6 @@
       box-shadow: 0 0 25px rgba(139, 92, 246, 0.8);
     }
 
-    /* Progress bar */
-    .skill-bar {
-      background: #1f2937;
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-    .skill-fill {
-      height: 0.5rem;
-      border-radius: 9999px;
-    }
-
     /* Footer */
     footer {
       background-color: #111827;
@@ -114,52 +100,15 @@
       transform: scale(1.2);
       color: #60a5fa;
     }
-
-    /* Custom Swiper Navigation */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      animation: pulseGlow 3s infinite ease-in-out;
-    }
-
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .swiper-button-next:hover,
-    .swiper-button-prev:hover {
-      transform: scale(1.2) rotate(8deg);
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      box-shadow: 0 0 18px rgba(139, 92, 246, 0.8);
-    }
-
-    /* Animasi Pulse Glow */
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 6px rgba(139, 92, 246, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 14px rgba(139, 92, 246, 0.7);
-      }
-    }
   </style>
 </head>
-<body>
+<body class="transition-colors duration-500">
 
-  <!-- Header -->
+  <!-- Hero Header -->
   <header class="parallax-header">
+    <picture>
+      <img src="img/africanguy.jpg" alt="Background Sigit" />
+    </picture>
     <div class="parallax-content" data-aos="fade-up">
       <h1 class="text-4xl font-bold mb-2">Sigit Setengah Kopling</h1>
       <p class="text-lg mb-4">Si Tampan dari Pulau Jawa</p>
@@ -168,107 +117,72 @@
   </header>
 
   <!-- Tentang Saya -->
-  <section id="about" class="max-w-3xl mx-auto px-6 py-10 mt-10 relative" data-aos="fade-up">
+  <section id="about" class="max-w-3xl mx-auto px-6 py-10 mt-10" data-aos="fade-up">
     <div class="glass text-center">
-      <img src="img/roll-safe-profile.jpg" alt="Foto Profil"
-        class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-indigo-500 shadow-lg hover:scale-110 transition">
-      <h2 class="text-3xl font-extrabold mb-4 text-white">Seputar Sigit</h2>
-      <p class="text-lg leading-relaxed mb-4 text-gray-300">
-        Calon Programmer dari PT. Jhawa Jyujyur yang berdomisili di Sigmarang, Jawa Selatan.
-        Menyukai <a href="#" class="underline hover:text-green-900 font-bold">matcha dan kwetiau</a>.
-      </p>
+      <img src="img/roll-safe-profile.jpg" alt="Foto profil Sigit" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-indigo-500 shadow-lg">
+      <h2 class="text-3xl font-extrabold mb-4">Seputar Sigit</h2>
+      <p class="text-lg leading-relaxed mb-4">Calon Programmer dari PT. Jhawa Jyujyur, domisili di Sigmarang, Jawa Selatan. Menyukai <span class="font-bold">matcha</span> dan <span class="font-bold">kwetiau</span>.</p>
       <p class="italic text-gray-400 mb-6">(berhati-hatilah para wanita)</p>
-      <div class="mt-6 flex justify-center gap-4">
-        <a href="mailto:asyaperdanaa@gmail.com" class="btn">Hire Me</a>
-        <a href="cv.pdf" class="btn">Download CV</a>
-      </div>
     </div>
   </section>
 
-  <!-- Keahlian -->
-  <section class="max-w-3xl mx-auto px-4 py-8 mt-8" data-aos="fade-up">
+  <!-- Statistik Counter -->
+  <section class="max-w-4xl mx-auto px-4 py-8" data-aos="fade-up">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="5">0</span><p>Tahun Pengalaman</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="20">0</span><p>Project Selesai</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="15">0</span><p>Klien Puas</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="100">0</span><p>Kopi Diminum</p></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="max-w-3xl mx-auto px-6 py-10" data-aos="fade-up">
     <div class="glass">
-      <h2 class="text-2xl font-bold mb-6 text-center text-white">Keahlian Sigit</h2>
-      <div class="space-y-6">
-        <div>
-          <p class="mb-1 text-gray-300">Coding</p>
-          <div class="skill-bar">
-            <div class="skill-fill bg-green-500" style="width: 75%;"></div>
-          </div>
-        </div>
-        <div>
-          <p class="mb-1 text-gray-300">Building Relations</p>
-          <div class="skill-bar">
-            <div class="skill-fill bg-blue-500" style="width: 67%;"></div>
-          </div>
-        </div>
-        <div>
-          <p class="mb-1 text-gray-300">Memikat Hati Wanita</p>
-          <div class="skill-bar">
-            <div class="skill-fill bg-pink-500" style="width: 100%;"></div>
-          </div>
-        </div>
-      </div>
+      <h2 class="text-2xl font-bold mb-6 text-center">Riwayat Hidup</h2>
+      <ul class="space-y-4">
+        <li><strong>2000</strong> – Lahir di Jawa Selatan</li>
+        <li><strong>2018</strong> – Lulus SMA, mulai belajar coding</li>
+        <li><strong>2022</strong> – Bergabung dengan PT. Jhawa Jyujyur</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Komentar / Review dengan Swiper Carousel -->
-  <section class="max-w-4xl mx-auto px-4 py-10 mt-8" data-aos="fade-up">
+  <!-- Portfolio -->
+  <section class="max-w-5xl mx-auto px-6 py-10" data-aos="fade-up">
+    <h2 class="text-2xl font-bold mb-6 text-center">Portfolio</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-4"><img src="https://via.placeholder.com/300" class="rounded-lg mb-3"><h3 class="font-bold">Project A</h3></div>
+      <div class="glass p-4"><img src="https://via.placeholder.com/300" class="rounded-lg mb-3"><h3 class="font-bold">Project B</h3></div>
+      <div class="glass p-4"><img src="https://via.placeholder.com/300" class="rounded-lg mb-3"><h3 class="font-bold">Project C</h3></div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="max-w-4xl mx-auto px-6 py-10" data-aos="fade-up">
+    <h2 class="text-2xl font-bold mb-6 text-center">Artikel Terbaru</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="glass p-4"><h3 class="font-bold mb-2">Kenapa Kopi dan Coding Cocok?</h3><p class="text-sm">Artikel singkat tentang hubungan kopi dan fokus saat ngoding...</p></div>
+      <div class="glass p-4"><h3 class="font-bold mb-2">Tips Belajar Javascript</h3><p class="text-sm">Mulai dari dasar: variabel, fungsi, dan DOM...</p></div>
+    </div>
+  </section>
+
+  <!-- Form Kontak -->
+  <section class="max-w-3xl mx-auto px-6 py-10" data-aos="fade-up">
     <div class="glass">
-      <h2 class="text-2xl font-bold mb-6 text-center text-white">Komentar Teman-Teman</h2>
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-
-          <!-- Review 1 -->
-          <div class="swiper-slide">
-            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
-              <img src="https://i.pravatar.cc/100?img=11" alt="Syamsudin"
-                   class="w-16 h-16 rounded-full border-2 border-yellow-400 mx-auto mb-3">
-              <span class="text-yellow-400">★★★★★</span>
-              <p class="text-gray-300 mt-2">"Bintang 5, sangat baik dan produktif. Selalu jadi penghibur di tim!"</p>
-              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Syamsudin</span></p>
-            </div>
-          </div>
-
-          <!-- Review 2 -->
-          <div class="swiper-slide">
-            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
-              <img src="https://i.pravatar.cc/100?img=32" alt="Eko"
-                   class="w-16 h-16 rounded-full border-2 border-pink-400 mx-auto mb-3">
-              <span class="text-yellow-400">★★★★★</span>
-              <p class="text-gray-300 mt-2">"Mas Sigit orangnya rajin, cepat tanggap, dan enak diajak kerja sama."</p>
-              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Eko Wibowo</span></p>
-            </div>
-          </div>
-
-          <!-- Review 3 -->
-          <div class="swiper-slide">
-            <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
-              <img src="https://i.pravatar.cc/100?img=45" alt="Fajar"
-                   class="w-16 h-16 rounded-full border-2 border-blue-400 mx-auto mb-3">
-              <span class="text-yellow-400">★★★★☆</span>
-              <p class="text-gray-300 mt-2">"Kalcer banget, cuman kadang suka terlalu humble 😅."</p>
-              <p class="text-sm text-gray-400 mt-2">— <span class="font-semibold text-white">Fajar Subuh</span></p>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Pagination & Navigation -->
-        <div class="swiper-pagination mt-4"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
+      <h2 class="text-2xl font-bold mb-6 text-center">Kontak Saya</h2>
+      <form action="https://formspree.io/f/{your-id}" method="POST" class="space-y-4">
+        <input type="text" name="nama" placeholder="Nama" required class="w-full p-3 rounded-lg text-white">
+        <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded-lg text-white">
+        <textarea name="pesan" rows="4" placeholder="Pesan" required class="w-full p-3 rounded-lg text-white"></textarea>
+        <button type="submit" class="btn w-full">Kirim</button>
+      </form>
     </div>
   </section>
 
-  <!-- Riwayat Hidup -->
-  <section class="py-10 mt-6 text-center">
-    <a href="https://en.wikipedia.org/wiki/Roll_Safe" target="_blank"
-      class="btn inline-flex items-center gap-3 text-lg font-bold">
-      <i class="fas fa-scroll text-2xl animate-bounce"></i>
-      <span>Riwayat Hidup Mas Sigit</span>
-    </a>
+  <!-- Quote Random -->
+  <section class="text-center py-8" data-aos="fade-up">
+    <blockquote id="quoteBox" class="italic text-lg"></blockquote>
   </section>
 
   <!-- Footer -->
@@ -286,31 +200,34 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init({ once: true, duration: 1000 });</script>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Counter JS -->
   <script>
-    const swiper = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 20,
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        320: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
-      }
+    document.querySelectorAll('.counter').forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const speed = 50;
+        if (count < target) {
+          counter.innerText = count + 1;
+          setTimeout(updateCount, speed);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
     });
   </script>
+
+  <!-- Random Quote -->
+  <script>
+    const quotes = [
+      "Think different, code different.",
+      "Debugging is like detective work.",
+      "Half-clutch, full passion.",
+      "Eat, Sleep, Code, Repeat."
+    ];
+    document.getElementById('quoteBox').innerText = quotes[Math.floor(Math.random()*quotes.length)];
+  </script>
+
 </body>
 </html>
