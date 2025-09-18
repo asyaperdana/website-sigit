@@ -1,129 +1,131 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio Sigit Setengah Kopling - Programmer muda dari Jawa Selatan, suka matcha & kwetiau." />
-    <title>Mengenal Sigit Setengah Kopling</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio Sigit Setengah Kopling - Programmer muda dari Jawa Selatan, suka matcha & kwetiau." />
+  <title>Mengenal Sigit Setengah Kopling</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;800&family=Merriweather:ital,wght@1,400&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;800&family=Merriweather:ital,wght@1,400&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="bg-gray-900 text-gray-100 transition-colors duration-500">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-900 text-gray-100 transition-colors duration-500">
 
-    <!-- Toggle Theme Button -->
-    <button id="themeToggle" class="fixed top-5 right-5 p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg z-50">
-      <i class="fas fa-moon"></i>
-    </button>
+  <!-- Toggle Theme Button -->
+  <button id="themeToggle" class="fixed top-5 right-5 p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg z-50">
+    <i class="fas fa-moon"></i>
+  </button>
 
-    <!-- Hero -->
-    <header class="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
-      <img src="img/africanguy.jpg" alt="Foto hero Sigit Setengah Kopling" class="absolute inset-0 w-full h-full object-cover opacity-70" />
-      <div class="relative z-10">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Sigit Setengah Kopling</h1>
-        <p class="text-lg md:text-xl">Si Tampan dari Pulau Jawa</p>
-        <a href="#about" class="mt-6 inline-block bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg shadow-lg">Lihat Profil</a>
+  <!-- Hero -->
+  <header class="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
+    <img src="img/africanguy.jpg" alt="Foto hero Sigit Setengah Kopling" class="absolute inset-0 w-full h-full object-cover opacity-70" />
+    <div class="relative z-10">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Sigit Setengah Kopling</h1>
+      <p class="text-lg md:text-xl">Si Tampan dari Pulau Jawa</p>
+      <a href="#about" class="mt-6 inline-block bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg shadow-lg">Lihat Profil</a>
+    </div>
+  </header>
+
+  <!-- Tentang Saya -->
+  <section id="about" class="max-w-5xl mx-auto px-6 py-16 about">
+    <div class="glass text-center p-8 md:p-12">
+      <img src="img/roll-safe-profile.jpg" alt="Foto profil Sigit" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-indigo-500 shadow-lg" />
+      <h2 class="text-4xl font-extrabold mb-6">Seputar Sigit</h2>
+      <p class="text-lg leading-relaxed mb-6">
+        Calon Programmer dari PT. Jhawa Jyujyur, domisili Sigmarang, Jawa Selatan. 
+        Spesialis matcha level dewa, sekaligus <span class="font-bold">pendekar kwetiau</span> tanpa tanding.
+      </p>
+      <p class="italic text-gray-400">(berhati-hatilah para wanita)</p>
+    </div>
+  </section>
+
+  <!-- Statistik -->
+  <section class="max-w-4xl mx-auto px-6 py-12 stats">
+    <h2 class="text-2xl font-bold mb-8 text-center">Statistik</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="5">0</span><p>Tahun Pengalaman</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="20">0</span><p>Project Selesai</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="15">0</span><p>Klien Puas</p></div>
+      <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="100">0</span><p>Kopi Diminum</p></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="max-w-3xl mx-auto px-6 py-12 timeline">
+    <div class="glass p-6">
+      <h2 class="text-2xl font-bold mb-6 text-center">Riwayat Hidup</h2>
+      <ul class="space-y-4">
+        <li><strong>2000</strong> – Lahir di Jawa Selatan</li>
+        <li><strong>2018</strong> – Lulus SMA, mulai belajar coding</li>
+        <li><strong>2022</strong> – Bergabung dengan PT. Jhawa Jyujyur</li>
+        <li><strong>2025</strong> – Menjadi CEO PT. Jhawa Jyujyur</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="max-w-5xl mx-auto px-6 py-12 portfolio">
+    <h2 class="text-2xl font-bold mb-6 text-center">Portfolio</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="glass p-4 cursor-pointer portfolio-item" data-title="Website E-commerce" data-img="img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png" data-desc="Website e-commerce modern dengan integrasi payment gateway.">
+        <img src="img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png" alt="Screenshot Website E-commerce" class="rounded-lg mb-3" />
+        <h3 class="font-bold">Website E-commerce</h3>
       </div>
-    </header>
-
-    <!-- Tentang Saya -->
-    <section id="about" class="max-w-3xl mx-auto px-6 py-12">
-      <div class="glass text-center">
-        <img src="img/roll-safe-profile.jpg" alt="Foto profil Sigit" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-indigo-500 shadow-lg" />
-        <h2 class="text-3xl font-extrabold mb-4">Seputar Sigit</h2>
-        <p class="text-lg leading-relaxed mb-4">
-          Calon Programmer dari PT. Jhawa Jyujyur, domisili Sigmarang, Jawa Selatan. Spesialis matcha level dewa, sekaligus <span class="font-bold">pendekar kwetiau</span> tanpa tanding.
-        </p>
-        <p class="italic text-gray-400">(berhati-hatilah para wanita)</p>
+      <div class="glass p-4 cursor-pointer portfolio-item" data-title="Aplikasi Mobile" data-img="img/Gemini_Generated_Image_phrd5ephrd5ephrd.png" data-desc="Aplikasi mobile berbasis Flutter untuk tracking kegiatan.">
+        <img src="img/Gemini_Generated_Image_phrd5ephrd5ephrd.png" alt="Screenshot Aplikasi Mobile" class="rounded-lg mb-3" />
+        <h3 class="font-bold">Aplikasi Mobile</h3>
       </div>
-    </section>
-
-    <!-- Statistik -->
-    <section class="max-w-4xl mx-auto px-6 py-12">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="5">0</span><p>Tahun Pengalaman</p></div>
-        <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="20">0</span><p>Project Selesai</p></div>
-        <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="15">0</span><p>Klien Puas</p></div>
-        <div class="glass p-6"><span class="text-4xl font-bold counter" data-target="100">0</span><p>Kopi Diminum</p></div>
-      </div>
-    </section>
-
-    <!-- Timeline -->
-    <section class="max-w-3xl mx-auto px-6 py-12">
-      <div class="glass p-6">
-        <h2 class="text-2xl font-bold mb-6 text-center">Riwayat Hidup</h2>
-        <ul class="space-y-4">
-          <li><strong>2000</strong> – Lahir di Jawa Selatan</li>
-          <li><strong>2018</strong> – Lulus SMA, mulai belajar coding</li>
-          <li><strong>2022</strong> – Bergabung dengan PT. Jhawa Jyujyur</li>
-          <li><strong>2025</strong> – Menjadi CEO PT. Jhawa Jyujyur</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section class="max-w-5xl mx-auto px-6 py-12">
-      <h2 class="text-2xl font-bold mb-6 text-center">Portfolio</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="glass p-4 cursor-pointer portfolio-item" data-title="Website E-commerce" data-img="img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png" data-desc="Website e-commerce modern dengan integrasi payment gateway.">
-          <img src="img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png" alt="Screenshot Website E-commerce" class="rounded-lg mb-3" />
-          <h3 class="font-bold">Website E-commerce</h3>
-        </div>
-        <div class="glass p-4 cursor-pointer portfolio-item" data-title="Aplikasi Mobile" data-img="img/Gemini_Generated_Image_phrd5ephrd5ephrd.png" data-desc="Aplikasi mobile berbasis Flutter untuk tracking kegiatan.">
-          <img src="img/Gemini_Generated_Image_phrd5ephrd5ephrd.png" alt="Screenshot Aplikasi Mobile" class="rounded-lg mb-3" />
-          <h3 class="font-bold">Aplikasi Mobile</h3>
-        </div>
-        <div class="glass p-4 cursor-pointer portfolio-item" data-title="Dashboard Admin" data-img="img/Gemini_Generated_Image_obttxwobttxwobtt.png" data-desc="Dashboard admin dengan chart interaktif dan manajemen user.">
-          <img src="img/Gemini_Generated_Image_obttxwobttxwobtt.png" alt="Screenshot Dashboard Admin" class="rounded-lg mb-3" />
-          <h3 class="font-bold">Dashboard Admin</h3>
-        </div>
-      </div>
-    </section>
-
-    <!-- Kontak -->
-    <section class="max-w-3xl mx-auto px-6 py-12">
-      <div class="glass p-6">
-        <h2 class="text-2xl font-bold mb-6 text-center">Kontak Saya</h2>
-        <form action="https://formspree.io/f/your-id" method="POST" class="space-y-4">
-          <input type="text" name="nama" placeholder="Nama" required class="w-full p-3 rounded bg-gray-800 text-white" />
-          <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded bg-gray-800 text-white" />
-          <textarea name="pesan" rows="4" placeholder="Pesan" required class="w-full p-3 rounded bg-gray-800 text-white"></textarea>
-          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2 rounded text-white">Kirim</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-6 text-center text-gray-400 text-sm">
-      <div class="flex justify-center gap-6 mb-4">
-        <a href="#" class="social-icon"><i class="fab fa-facebook-f text-xl"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter text-xl"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-instagram text-xl"></i></a>
-        <a href="https://github.com/asyaperdana" class="social-icon"><i class="fab fa-github text-xl"></i></a>
-      </div>
-      © 2025 Sigit Setengah Kopling. All Rights Reserved.
-    </footer>
-
-    <!-- Modal Portfolio -->
-    <div id="portfolioModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-      <div class="bg-gray-900 rounded-2xl max-w-2xl w-full p-6 text-center relative">
-        <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">&times;</button>
-        <img id="modalImg" src="" alt="Project Preview" class="rounded-lg mb-4 mx-auto" />
-        <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
-        <p id="modalDesc" class="text-gray-300"></p>
+      <div class="glass p-4 cursor-pointer portfolio-item" data-title="Dashboard Admin" data-img="img/Gemini_Generated_Image_obttxwobttxwobtt.png" data-desc="Dashboard admin dengan chart interaktif dan manajemen user.">
+        <img src="img/Gemini_Generated_Image_obttxwobttxwobtt.png" alt="Screenshot Dashboard Admin" class="rounded-lg mb-3" />
+        <h3 class="font-bold">Dashboard Admin</h3>
       </div>
     </div>
+  </section>
 
-    <!-- Script -->
-    <script src="main.js"></script>
-  </body>
+  <!-- Kontak -->
+  <section class="max-w-3xl mx-auto px-6 py-12 kontak">
+    <div class="glass p-6">
+      <h2 class="text-2xl font-bold mb-6 text-center">Kontak Saya</h2>
+      <form action="https://formspree.io/f/your-id" method="POST" class="space-y-4">
+        <input type="text" name="nama" placeholder="Nama" required class="w-full p-3 rounded bg-gray-800 text-white" />
+        <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded bg-gray-800 text-white" />
+        <textarea name="pesan" rows="4" placeholder="Pesan" required class="w-full p-3 rounded bg-gray-800 text-white"></textarea>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2 rounded text-white">Kirim</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-400 text-sm">
+    <div class="flex justify-center gap-6 mb-4">
+      <a href="#" class="social-icon"><i class="fab fa-facebook-f text-xl"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-twitter text-xl"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-instagram text-xl"></i></a>
+      <a href="https://github.com/asyaperdana" class="social-icon"><i class="fab fa-github text-xl"></i></a>
+    </div>
+    © 2025 Sigit Setengah Kopling. All Rights Reserved.
+  </footer>
+
+  <!-- Modal Portfolio -->
+  <div id="portfolioModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 rounded-2xl max-w-2xl w-full p-6 text-center relative">
+      <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <img id="modalImg" src="" alt="Project Preview" class="rounded-lg mb-4 mx-auto" />
+      <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+      <p id="modalDesc" class="text-gray-300"></p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="main.js"></script>
+</body>
 </html>
