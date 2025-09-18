@@ -2,19 +2,19 @@
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  transition: background-color 0.4s, color 0.4s;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* === Light Theme (lebih nyaman + pastel) === */
 body.light {
-  background-color: #f3f4f6;   /* abu terang lembut */
+  background-color: #f3f4f6;
   color: #111827;
 }
 
 body.light .glass {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
 body.light input,
@@ -24,126 +24,115 @@ body.light textarea {
   border: 1px solid #e5e7eb;
 }
 
-body.light .social-icon {
-  color: #6b7280;
-}
-body.light .social-icon:hover {
-  color: #111827;
-}
-
-/* === Pastel accents per section di Light Mode === */
+/* Pastel accents */
 body.light .about h2 { color: #2563eb; }
 body.light .stats h2 { color: #059669; }
 body.light .timeline h2 { color: #d97706; }
 body.light .portfolio h2 { color: #7c3aed; }
 body.light .kontak h2 { color: #db2777; }
 
-/* === Glass Effect (default Dark Mode style) === */
+/* === Glass default (dark) === */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.08);
   border-radius: 1rem;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transition: background-color 0.5s ease, box-shadow 0.4s ease, transform 0.25s ease;
 }
 
-/* === Typography === */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+/* Typography */
+h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.reveal-active { opacity: 1; transform: translateY(0); }
+
+/* Hero typing styling (cursor is JS) */
+.hero-typing { display:inline-block; white-space:nowrap; overflow:hidden; }
+
+/* Parallax hero bg (will be transformed by JS) */
+#heroBg { transition: transform 0.15s linear; }
+
+/* Portfolio media + overlay */
+.portfolio-media { position: relative; overflow: hidden; border-radius: 0.75rem; }
+.portfolio-media img { display:block; width:100%; height:180px; object-fit:cover; transition: transform 0.5s ease; }
+.portfolio-media .overlay {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+  opacity:0; transform: translateY(8px); transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.portfolio-media .overlay-text { color:#fff; text-align:center; padding:0.5rem; }
+.portfolio-item:hover .portfolio-media img { transform: scale(1.06); }
+.portfolio-item:hover .portfolio-media .overlay { opacity:1; transform: translateY(0); }
+
+/* Counter pulse when reached */
+.stat-card.pulse { animation: statPulse 1.2s ease 0s 2; box-shadow: 0 6px 24px rgba(34,197,94,0.12); }
+@keyframes statPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
 }
 
-/* === Social Icons === */
-.social-icon {
-  color: #9ca3af;
-  transition: all 0.3s ease;
+/* Button ripple micro-animation */
+.btn-ripple { position:relative; overflow:hidden; }
+.btn-ripple .ripple {
+  position:absolute; border-radius:50%; transform: scale(0); background: rgba(255,255,255,0.3);
+  animation: rippleAnim 0.6s linear;
+  pointer-events:none;
 }
-.social-icon:hover {
-  color: #ffffff;
-  transform: scale(1.2);
-}
+@keyframes rippleAnim { to { transform: scale(4); opacity:0; } }
 
-/* === Portfolio Modal === */
-#portfolioModal {
-  animation: fadeIn 0.3s ease forwards;
-}
-#portfolioModal .bg-gray-900 {
-  animation: zoomIn 0.3s ease forwards;
-}
-#portfolioModal img {
-  max-width: 90%;
-  max-height: 70vh;
-  object-fit: contain;
-}
-
-/* === Animations === */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes zoomIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* === Neon Pulse (Dark Mode) === */
+/* Neon pulse (dark mode only) */
 @keyframes neonPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px var(--neon1),
-                0 0 16px var(--neon2);
-  }
-  50% {
-    box-shadow: 0 0 16px var(--neon2),
-                0 0 32px var(--neon1);
-  }
+  0%,100% { box-shadow: 0 0 8px var(--neon1), 0 0 16px var(--neon2); }
+  50% { box-shadow: 0 0 16px var(--neon2), 0 0 32px var(--neon1); }
 }
 
-/* === Neon Glow untuk konten (Dark Mode only) === */
-body:not(.light) .about .glass:hover {
-  --neon1: rgba(59, 130, 246, 0.7);
-  --neon2: rgba(29, 78, 216, 0.6);
-  animation: neonPulse 2.5s infinite alternate;
-  transform: translateY(-6px) scale(1.02);
+/* Neon flicker (subtle) */
+@keyframes neonFlicker {
+  0%,100% { opacity:1; filter: drop-shadow(0 0 8px var(--neon1)); }
+  50% { opacity:0.85; filter: drop-shadow(0 0 4px rgba(0,0,0,0)); }
 }
 
-body:not(.light) .stats .glass:hover {
-  --neon1: rgba(34, 197, 94, 0.7);
-  --neon2: rgba(21, 128, 61, 0.6);
-  animation: neonPulse 2.5s infinite alternate;
-  transform: translateY(-6px) scale(1.05);
+body:not(.light) .about .glass:hover { --neon1: rgba(59,130,246,0.7); --neon2: rgba(29,78,216,0.6); animation: neonPulse 2.5s infinite alternate; transform: translateY(-6px) scale(1.02); }
+body:not(.light) .stats .glass:hover { --neon1: rgba(34,197,94,0.7); --neon2: rgba(21,128,61,0.6); animation: neonPulse 2.5s infinite alternate; transform: translateY(-6px) scale(1.05); }
+body:not(.light) .timeline .glass:hover { --neon1: rgba(250,204,21,0.8); --neon2: rgba(202,138,4,0.6); animation: neonPulse 2.5s infinite alternate; transform: translateY(-4px); }
+body:not(.light) .portfolio .portfolio-item:hover { --neon1: rgba(168,85,247,0.7); --neon2: rgba(124,58,237,0.6); animation: neonPulse 2.5s infinite alternate; transform: translateY(-6px) scale(1.05); }
+body:not(.light) .kontak .glass:hover { --neon1: rgba(236,72,153,0.7); --neon2: rgba(190,24,93,0.6); animation: neonPulse 2.5s infinite alternate; transform: translateY(-4px); }
+
+/* Neon flicker class to apply occasionally */
+.flicker { animation: neonFlicker 0.9s linear; }
+
+/* Timeline item micro-hover */
+.timeline-item { transition: transform 0.25s ease, background-color 0.25s ease; padding: 0.25rem; border-radius: 0.5rem; }
+.timeline-item:hover { transform: translateX(4px); background: rgba(255,255,255,0.02); }
+
+/* Smooth transition for theme changes */
+body, .glass, h1,h2,h3,h4,h5,h6, input, textarea, .social-icon { transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease, transform 0.3s ease; }
+
+/* === Page Load Animation dengan Delay === */
+body.page-loading section,
+body.page-loading header,
+body.page-loading footer {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-body:not(.light) .timeline .glass:hover {
-  --neon1: rgba(250, 204, 21, 0.8);
-  --neon2: rgba(202, 138, 4, 0.6);
-  animation: neonPulse 2.5s infinite alternate;
-  transform: translateY(-4px);
+body.page-loaded section,
+body.page-loaded header,
+body.page-loaded footer {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-body:not(.light) .portfolio .portfolio-item:hover {
-  --neon1: rgba(168, 85, 247, 0.7);
-  --neon2: rgba(124, 58, 237, 0.6);
-  animation: neonPulse 2.5s infinite alternate;
-  transform: translateY(-6px) scale(1.05);
-}
-
-body:not(.light) .kontak .glass:hover {
-  --neon1: rgba(236, 72, 153, 0.7);
-  --neon2: rgba(190, 24, 93, 0.6);
-  animation: neonPulse 2.5s infinite alternate;
-  transform: translateY(-4px);
-}
-
-/* === Smooth Theme Transition === */
-body, 
-.glass, 
-h1, h2, h3, h4, h5, h6, 
-input, textarea, 
-.social-icon {
-  transition: background-color 0.5s ease,
-              color 0.5s ease,
-              box-shadow 0.5s ease,
-              border-color 0.5s ease,
-              transform 0.3s ease;
-}
+/* Delay bertahap */
+header { transition-delay: 0.2s; }
+#about { transition-delay: 0.4s; }
+.stats { transition-delay: 0.6s; }
+.timeline { transition-delay: 0.8s; }
+.portfolio { transition-delay: 1s; }
+.kontak { transition-delay: 1.2s; }
+footer { transition-delay: 1.4s; }
