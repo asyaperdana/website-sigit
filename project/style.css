@@ -1,0 +1,89 @@
+/* === Global === */
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* === Light Theme === */
+body.light {
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+body.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light input,
+body.light textarea {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+body.light .social-icon {
+  color: #374151;
+}
+body.light .social-icon:hover {
+  color: #111827;
+}
+
+/* === Glass Effect === */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* === Social Icons === */
+.social-icon {
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+.social-icon:hover {
+  color: #ffffff;
+  transform: scale(1.2);
+}
+
+/* === Portfolio Modal === */
+#portfolioModal {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+#portfolioModal .bg-gray-900 {
+  animation: zoomIn 0.3s ease forwards;
+}
+
+/* Batas ukuran gambar modal */
+#portfolioModal img {
+  max-width: 90%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* === Button Hover === */
+button, .portfolio-item {
+  transition: all 0.3s ease;
+}
+button:hover, .portfolio-item:hover {
+  transform: translateY(-4px);
+}
