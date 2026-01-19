@@ -1,0 +1,70 @@
+<script>
+    let { activeProject, onClose } = $props();
+
+    /** @param {KeyboardEvent} e */
+    function handleKeydown(e) {
+        if (e.key === "Escape") onClose();
+    }
+</script>
+
+<svelte:window onkeydown={handleKeydown} />
+
+{#if activeProject}
+    <div
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all duration-300"
+        onclick={onClose}
+        onkeydown={(e) => e.key === "Enter" && onClose()}
+        role="button"
+        tabindex="0"
+    >
+        <div
+            class="glass w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl relative flex flex-col scale-100 p-0"
+            onclick={(e) => e.stopPropagation()}
+            role="presentation"
+        >
+            <button
+                onclick={onClose}
+                class="absolute top-4 right-4 bg-[var(--bg)]/80 text-[var(--text)] w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all z-10 shadow-lg text-lg"
+                aria-label="Close modal"
+            >
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="relative shrink-0">
+                <img
+                    src={activeProject.img}
+                    alt={activeProject.title}
+                    class="w-full h-48 sm:h-72 object-cover rounded-t-xl"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent opacity-60"
+                ></div>
+            </div>
+            <div class="p-6 md:p-8 flex-1">
+                <h3
+                    class="text-2xl md:text-3xl font-bold mb-3 text-indigo-500 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500"
+                >
+                    {activeProject.title}
+                </h3>
+                <p
+                    class="text-[var(--text)] opacity-70 leading-relaxed mb-6 text-base md:text-lg"
+                >
+                    {activeProject.desc}
+                </p>
+                <div
+                    class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-[var(--glass-border)]"
+                >
+                    <button
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </button>
+                    <button
+                        class="border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                        <i class="fab fa-github"></i> Source Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}

@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "UserReview" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userName" TEXT NOT NULL,
+    "rating" INTEGER NOT NULL,
+    "comment" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
