@@ -14,13 +14,13 @@ jobs:
   build_site:
     runs-on: ubuntu-latest
     steps:
-      # actions/checkout@v4.1.7
+      # actions/checkout@v4
       - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@v4
 
-      # actions/setup-node@v4.0.3
+      # actions/setup-node@v4
       - name: Setup Node
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: 'npm'
@@ -30,13 +30,13 @@ jobs:
           npm install
           npm run build
 
-      # actions/upload-pages-artifact@v3.0.1
+      # actions/upload-pages-artifact@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist' 
 
-      # actions/deploy-pages@v4.0.5
+      # actions/deploy-pages@v4
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@d6db9015773b9687e124b278f93495d012fe72ee
+        uses: actions/deploy-pages@v4
