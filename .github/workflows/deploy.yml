@@ -41,9 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@52382499dd5837a6af74534a483311153e4c46d3
         with:
-          # Ensure this matches your build output folder (usually 'dist' or 'build')
-          path: './dist'
-
+          path: './build'
       # actions/deploy-pages@v4.0.5
       - name: Deploy to GitHub Pages
         id: deployment
