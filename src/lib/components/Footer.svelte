@@ -1,21 +1,25 @@
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <footer class="py-12 text-center text-[var(--text)] opacity-40 text-sm">
     <div class="flex justify-center gap-8 mb-6">
         <a
-            href="/"
+            href={base || "/"}
             class="hover:text-indigo-500 transition-colors"
             aria-label="Facebook"
         >
             <i class="fab fa-facebook-f text-xl"></i>
         </a>
         <a
-            href="/"
+            href={base || "/"}
             class="hover:text-indigo-500 transition-colors"
             aria-label="Twitter"
         >
             <i class="fab fa-twitter text-xl"></i>
         </a>
         <a
-            href="/"
+            href={base || "/"}
             class="hover:text-indigo-500 transition-colors"
             aria-label="Instagram"
         >

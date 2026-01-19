@@ -109,7 +109,7 @@
 </svelte:head>
 
 <div
-    class="bg-[#030712] text-gray-100 transition-colors duration-500 min-h-screen"
+    class="bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 min-h-screen"
 >
     <Navbar bind:isScrolled />
 

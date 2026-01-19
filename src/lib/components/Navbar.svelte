@@ -5,13 +5,25 @@
     let { isScrolled = $bindable(false) } = $props();
     let mobileMenuOpen = $state(false);
     let isDark = $state(true);
+    let scrollProgress = $state(0);
 
     onMount(() => {
+        const handleScroll = () => {
+            const winScroll = window.scrollY;
+            const height =
+                document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+            scrollProgress = height > 0 ? (winScroll / height) * 100 : 0;
+        };
+        window.addEventListener("scroll", handleScroll);
+
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
             isDark = false;
             document.body.classList.add("light");
         }
+
+        return () => window.removeEventListener("scroll", handleScroll);
     });
 
     function toggleTheme() {
@@ -144,14 +156,7 @@
     <!-- Progress Bar Integrated -->
     <div
         class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-indigo-500/50 blur-[1px] transition-all duration-300 pointer-events-none"
-        style="width: {(() => {
-            if (typeof window === 'undefined') return '0%';
-            const winScroll = window.scrollY;
-            const height =
-                document.documentElement.scrollHeight -
-                document.documentElement.clientHeight;
-            return Math.min((winScroll / height) * 100, 100) + '%';
-        })()}"
+        style="width: {Math.min(scrollProgress, 100)}%"
     ></div>
 </nav>
 
