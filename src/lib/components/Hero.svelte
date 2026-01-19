@@ -1,4 +1,5 @@
 <script>
+    import { base } from "$app/paths";
     /** @param {MouseEvent} e */
     function handleRipple(e) {
         const btn = /** @type {HTMLElement} */ (e.currentTarget);
@@ -62,7 +63,7 @@
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-[var(--bg)]"></div>
         <img
-            src="/img/africanguy.jpg"
+            src="{base}/img/africanguy.jpg"
             alt=""
             class="w-full h-full object-cover opacity-10 grayscale brightness-75"
         />

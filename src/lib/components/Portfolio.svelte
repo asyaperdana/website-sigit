@@ -1,20 +1,21 @@
 <script>
+    import { base } from "$app/paths";
     let { onOpenModal } = $props();
 
     const projects = [
         {
             title: "Website E-commerce",
-            img: "/img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png",
+            img: `${base}/img/Gemini_Generated_Image_p0ehnwp0ehnwp0eh.png`,
             desc: "Sebuah platform belanja online modern yang sangat kencang karena Sigit yang buat.",
         },
         {
             title: "Aplikasi Mobile",
-            img: "/img/Gemini_Generated_Image_phrd5ephrd5ephrd.png",
+            img: `${base}/img/Gemini_Generated_Image_phrd5ephrd5ephrd.png`,
             desc: "Aplikasi tracking kegantengan... eh maksudnya kegiatan harian.",
         },
         {
             title: "Dashboard Admin",
-            img: "/img/Gemini_Generated_Image_obttxwobttxwobtt.png",
+            img: `${base}/img/Gemini_Generated_Image_obttxwobttxwobtt.png`,
             desc: "Dashboard super canggih untuk memantau trafik kwetiau se-Indonesia.",
         },
     ];

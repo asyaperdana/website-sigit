@@ -1,5 +1,6 @@
 <script>
     import { onMount } from "svelte";
+    import { base } from "$app/paths";
 
     let { isScrolled = $bindable(false) } = $props();
     let mobileMenuOpen = $state(false);
@@ -35,7 +36,7 @@
         >
             <!-- Logo -->
             <a
-                href="/"
+                href={base || "/"}
                 class="text-xl font-bold tracking-tight text-[var(--text)] hover:text-indigo-400 transition-colors shrink-0"
             >
                 Sigit<span class="text-indigo-500">.</span>

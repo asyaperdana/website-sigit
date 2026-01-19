@@ -1,4 +1,5 @@
 <script>
+    import { base } from "$app/paths";
     let profilePicEl = $state();
     let clickCount = $state(0);
 
@@ -26,7 +27,7 @@
         >
             <img
                 bind:this={profilePicEl}
-                src="/img/roll-safe-profile.jpg"
+                src="{base}/img/roll-safe-profile.jpg"
                 alt="Foto profil Sigit"
                 class="w-40 h-40 rounded-full border-4 border-indigo-500 shadow-lg cursor-grab active:cursor-grabbing transition-transform"
             />
