@@ -120,11 +120,11 @@ body::after {
   background: rgba(99, 102, 241, 0.5);
 }
 
-body.light ::webkit-scrollbar-track {
+body.light ::-webkit-scrollbar-track {
   background: var(--bg-light);
 }
 
-body.light ::webkit-scrollbar-thumb {
+body.light ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.3);
   border: 2px solid var(--bg-light);
 }
