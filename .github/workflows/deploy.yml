@@ -32,7 +32,7 @@ jobs:
 
       # actions/upload-pages-artifact@v3.0.1
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@56461b9ad0d4c0b48da937d7703d9697996df6bd
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist' 
 
