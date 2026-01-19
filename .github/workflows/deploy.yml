@@ -2,7 +2,7 @@ name: Deploy Website
 
 on:
   push:
-    branches: ["main"] # Ensure this matches your default branch name
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -15,17 +15,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build_site: # Matches the job name in your screenshots
     runs-on: ubuntu-latest
     steps:
       # actions/checkout@v4.1.7
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
-      - name: Setup Node
+      # actions/setup-node@v4.0.3
+      - name: Setup Node.js
         uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b
         with:
           node-version: "20"
@@ -39,9 +37,11 @@ jobs:
 
       # actions/upload-pages-artifact@v3.0.1
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@52382499dd5837a6af74534a483311153e4c46d3
+        uses: actions/upload-pages-artifact@56461b9ad0d4c0b48da937d7703d9697996df6bd
         with:
-          path: './build'
+          # Ensure this matches your build folder (usually 'dist' or 'build')
+          path: './dist'
+
       # actions/deploy-pages@v4.0.5
       - name: Deploy to GitHub Pages
         id: deployment
