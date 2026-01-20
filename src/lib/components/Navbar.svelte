@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { base } from "$app/paths";
+    import { smoothScrollTo } from "$lib/utils/animations.js";
 
     let { isScrolled = $bindable(false) } = $props();
     let mobileMenuOpen = $state(false);
@@ -15,7 +16,7 @@
                 document.documentElement.clientHeight;
             scrollProgress = height > 0 ? (winScroll / height) * 100 : 0;
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
 
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
@@ -30,6 +31,16 @@
         isDark = !isDark;
         document.body.classList.toggle("light");
         localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    /**
+     * @param {MouseEvent} e
+     * @param {string} target
+     */
+    function handleNavClick(e, target) {
+        e.preventDefault();
+        smoothScrollTo(target);
+        mobileMenuOpen = false;
     }
 </script>
 
@@ -61,26 +72,31 @@
             <div class="hidden md:flex items-center gap-6">
                 <a
                     href="#about"
+                    onclick={(e) => handleNavClick(e, "#about")}
                     class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
                     >About</a
                 >
                 <a
                     href="#skills"
+                    onclick={(e) => handleNavClick(e, "#skills")}
                     class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
                     >Skills</a
                 >
                 <a
                     href="#portfolio"
+                    onclick={(e) => handleNavClick(e, "#portfolio")}
                     class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
                     >Portfolio</a
                 >
                 <a
                     href="#reviews"
+                    onclick={(e) => handleNavClick(e, "#reviews")}
                     class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
                     >Reviews</a
                 >
                 <a
                     href="#contact"
+                    onclick={(e) => handleNavClick(e, "#contact")}
                     class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
                     >Contact</a
                 >
@@ -122,32 +138,32 @@
         >
             <a
                 href="#about"
-                onclick={() => (mobileMenuOpen = false)}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400"
+                onclick={(e) => handleNavClick(e, "#about")}
+                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
                 >About</a
             >
             <a
                 href="#skills"
-                onclick={() => (mobileMenuOpen = false)}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400"
+                onclick={(e) => handleNavClick(e, "#skills")}
+                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
                 >Skills</a
             >
             <a
                 href="#portfolio"
-                onclick={() => (mobileMenuOpen = false)}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400"
+                onclick={(e) => handleNavClick(e, "#portfolio")}
+                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
                 >Portfolio</a
             >
             <a
                 href="#reviews"
-                onclick={() => (mobileMenuOpen = false)}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400"
+                onclick={(e) => handleNavClick(e, "#reviews")}
+                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
                 >Reviews</a
             >
             <a
                 href="#contact"
-                onclick={() => (mobileMenuOpen = false)}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400"
+                onclick={(e) => handleNavClick(e, "#contact")}
+                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
                 >Contact</a
             >
         </div>

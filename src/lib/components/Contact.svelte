@@ -1,43 +1,57 @@
 <script>
     import { onMount } from "svelte";
+    import { createMagneticEffect } from "$lib/utils/magnetic.js";
 
     let magneticBtn = $state();
+    let isSubmitting = $state(false);
+    let formMessage = $state("");
+    let showToast = $state(false);
 
     onMount(() => {
-        const btn = magneticBtn;
-        if (!btn || window.innerWidth < 1024) return;
-
-        /** @param {MouseEvent} e */
-        const handleMouseMove = (e) => {
-            const rect = btn.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
-            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-            if (distance < 100) {
-                const strength = 0.3;
-                const x = deltaX * strength;
-                const y = deltaY * strength;
-                btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            } else {
-                btn.style.transform = `translate3d(0, 0, 0)`;
-            }
-        };
-
-        const handleMouseLeave = () => {
-            btn.style.transform = `translate3d(0, 0, 0)`;
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        btn.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            btn.removeEventListener("mouseleave", handleMouseLeave);
-        };
+        const cleanup = createMagneticEffect(magneticBtn);
+        return cleanup;
     });
+
+    /**
+     * @param {SubmitEvent} e
+     */
+    async function handleSubmit(e) {
+        e.preventDefault();
+        isSubmitting = true;
+
+        const formData = new FormData(
+            /** @type {HTMLFormElement} */ (e.target),
+        );
+        const data = {
+            nama: formData.get("nama"),
+            email: formData.get("email"),
+            pesan: formData.get("pesan"),
+        };
+
+        // Simulate form submission (replace with actual API call)
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+
+            formMessage = `Terima kasih ${data.nama}! Pesan kamu sudah diterima. 🚀`;
+            showToast = true;
+
+            // Reset form
+            /** @type {HTMLFormElement} */ (e.target).reset();
+
+            // Hide toast after 4 seconds
+            setTimeout(() => {
+                showToast = false;
+            }, 4000);
+        } catch (error) {
+            formMessage = "Oops! Terjadi kesalahan. Coba lagi ya! 😅";
+            showToast = true;
+            setTimeout(() => {
+                showToast = false;
+            }, 4000);
+        } finally {
+            isSubmitting = false;
+        }
+    }
 </script>
 
 <section id="contact" class="max-w-4xl mx-auto px-6 py-12 reveal kontak">
@@ -45,7 +59,7 @@
         <h2 class="text-2xl font-bold mb-8 text-center text-[var(--text)]">
             Kontak Saya
         </h2>
-        <form class="space-y-4">
+        <form class="space-y-4" onsubmit={handleSubmit}>
             <input
                 type="text"
                 name="nama"
@@ -70,10 +84,29 @@
             <button
                 type="submit"
                 bind:this={magneticBtn}
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out"
+                disabled={isSubmitting}
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
             >
-                Kirim Pesan
+                {#if isSubmitting}
+                    <span class="flex items-center justify-center gap-2">
+                        <span
+                            class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                        ></span>
+                        Mengirim...
+                    </span>
+                {:else}
+                    Kirim Pesan
+                {/if}
             </button>
         </form>
     </div>
 </section>
+
+<!-- Toast Notification -->
+{#if showToast}
+    <div
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300"
+    >
+        {formMessage}
+    </div>
+{/if}

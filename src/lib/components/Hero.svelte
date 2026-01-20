@@ -1,58 +1,21 @@
 <script>
     import { base } from "$app/paths";
-    /** @param {MouseEvent} e */
-    function handleRipple(e) {
-        const btn = /** @type {HTMLElement} */ (e.currentTarget);
-        if (!btn) return;
-        const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const ripple = document.createElement("span");
-        ripple.className = "ripple";
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
-        btn.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 400);
-    }
-
     import { onMount } from "svelte";
+    import { createRipple, smoothScrollTo } from "$lib/utils/animations.js";
+    import { createMagneticEffect } from "$lib/utils/magnetic.js";
+
     let magneticBtn = $state();
 
     onMount(() => {
-        const btn = magneticBtn;
-        if (!btn || window.innerWidth < 1024) return;
-
-        /** @param {MouseEvent} e */
-        const handleMouseMove = (e) => {
-            const rect = btn.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
-            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-            if (distance < 100) {
-                const strength = 0.3;
-                const x = deltaX * strength;
-                const y = deltaY * strength;
-                btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            } else {
-                btn.style.transform = `translate3d(0, 0, 0)`;
-            }
-        };
-
-        const handleMouseLeave = () => {
-            btn.style.transform = `translate3d(0, 0, 0)`;
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        btn.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            btn.removeEventListener("mouseleave", handleMouseLeave);
-        };
+        const cleanup = createMagneticEffect(magneticBtn);
+        return cleanup;
     });
+
+    /** @param {MouseEvent} e */
+    function handleStartExploring(e) {
+        createRipple(e);
+        smoothScrollTo("#about");
+    }
 </script>
 
 <header
@@ -132,7 +95,7 @@
         >
             <button
                 bind:this={magneticBtn}
-                onclick={handleRipple}
+                onclick={handleStartExploring}
                 class="group relative px-10 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-indigo-500/20"
             >
                 Start Exploring
