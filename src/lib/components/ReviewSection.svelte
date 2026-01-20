@@ -1,36 +1,123 @@
 <script>
-    import { enhance } from "$app/forms";
+    import { onMount } from "svelte";
     import StarRating from "./StarRating.svelte";
     import ReviewCard from "./ReviewCard.svelte";
 
-    let { data, form } = $props();
+    let { data } = $props();
+
+    const STORAGE_KEY = "website-sigit-reviews";
 
     // Local state to handle immediate updates
     let selectedRating = $state(0);
     let isSubmitting = $state(false);
     let showSuccess = $state(false);
+    let errorMessage = $state("");
 
     /** @type {any[]} */
-    let localReviews = $derived(data.reviews);
+    let localReviews = $state([]);
 
-    function handleSubmit() {
+    // Default/sample reviews to show initially if localStorage is empty
+    const defaultReviews = [
+        {
+            id: 1,
+            userName: "Budi Tabuti",
+            rating: 5,
+            comment: "Sigit emang gacor! Webnya kencang kayak pake turbo.",
+            createdAt: new Date().toISOString(),
+        },
+        {
+            id: 2,
+            userName: "Ani Matcha",
+            rating: 4,
+            comment:
+                "Matcha level dewanya beneran kerasa di setiap baris kodenya.",
+            createdAt: new Date().toISOString(),
+        },
+    ];
+
+    // Load reviews from localStorage on mount
+    onMount(() => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            try {
+                localReviews = JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored reviews:", e);
+                localReviews = defaultReviews;
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(defaultReviews),
+                );
+            }
+        } else {
+            // Initialize with default reviews
+            localReviews = defaultReviews;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultReviews));
+        }
+    });
+
+    /**
+     * Handle form submission client-side
+     * @param {SubmitEvent} event
+     */
+    async function handleSubmit(event) {
+        event.preventDefault();
         isSubmitting = true;
         showSuccess = false;
+        errorMessage = "";
 
-        /** @param {{ result: import('@sveltejs/kit').ActionResult, update: (options?: { reset?: boolean }) => Promise<void> }} params */
-        return async ({ result, update }) => {
+        const formData = new FormData(event.target);
+        const userName = formData.get("userName")?.toString().trim();
+        const comment = formData.get("comment")?.toString().trim();
+        const rating = selectedRating;
+
+        // Validation
+        if (!rating || rating === 0) {
+            errorMessage = "Pilih rating dulu dong!";
             isSubmitting = false;
-            if (result.type === "success") {
-                showSuccess = true;
-                selectedRating = 0; // Reset rating
-                // Automatic success message reset after 5s
-                setTimeout(() => {
-                    showSuccess = false;
-                }, 5000);
-                // Call default update to reset form fields and invalidate data
-                await update({ reset: true });
-            }
+            return;
+        }
+        if (!userName) {
+            errorMessage = "Nama harus diisi ya!";
+            isSubmitting = false;
+            return;
+        }
+        if (!comment) {
+            errorMessage = "Kasih kesan pesan dong!";
+            isSubmitting = false;
+            return;
+        }
+
+        // Simulate async operation for better UX
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Create new review
+        const newReview = {
+            id: Date.now(),
+            userName,
+            rating,
+            comment,
+            createdAt: new Date().toISOString(),
         };
+
+        // Add to reviews array (prepend so newest is first)
+        localReviews = [newReview, ...localReviews];
+
+        // Save to localStorage
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(localReviews));
+
+        // Reset form
+        selectedRating = 0;
+        event.target.reset();
+
+        // Show success message
+        isSubmitting = false;
+        showSuccess = true;
+
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+            showSuccess = false;
+        }, 5000);
     }
 </script>
 
@@ -67,11 +154,7 @@
                     Tulis Review
                 </h3>
 
-                <form
-                    method="POST"
-                    use:enhance={handleSubmit}
-                    class="space-y-6"
-                >
+                <form onsubmit={handleSubmit} class="space-y-6">
                     {#if showSuccess}
                         <div
                             class="bg-indigo-500/10 border border-indigo-500/50 text-indigo-300 p-4 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-4"
@@ -83,12 +166,13 @@
                         </div>
                     {/if}
 
-                    {#if form?.error}
+                    {#if errorMessage}
                         <div
-                            class="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl flex items-center gap-3"
+                            class="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-4"
                         >
                             <i class="fas fa-exclamation-circle"></i>
-                            <span class="text-sm font-medium">{form.error}</span
+                            <span class="text-sm font-medium"
+                                >{errorMessage}</span
                             >
                         </div>
                     {/if}

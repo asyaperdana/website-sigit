@@ -17,7 +17,7 @@
     import CustomCursor from "$lib/components/CustomCursor.svelte";
     import VanillaTilt from "vanilla-tilt";
 
-    let { data, form } = $props();
+    let { data } = $props();
 
     let isScrolled = $state(false);
     let showBackToTop = $state(false);
@@ -123,7 +123,7 @@
         <Portfolio
             onOpenModal={(/** @type {any} */ p) => (activeProject = p)}
         />
-        <ReviewSection {data} {form} />
+        <ReviewSection {data} />
         <FAQ />
         <Contact />
     </main>
