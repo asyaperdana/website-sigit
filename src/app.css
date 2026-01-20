@@ -31,6 +31,10 @@
   /* Transitions - More Responsive */
   --trans-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   --trans-elastic: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Compatibility aliases (used by a few legacy rules below) */
+  --trans-base: var(--trans-smooth);
+  --primary: var(--accent-primary);
 }
 
 body.light {
@@ -114,10 +118,6 @@ body::after {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.5);
 }
 
 body.light ::-webkit-scrollbar-track {
@@ -285,27 +285,7 @@ body.light .glass {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Navbar specific utilities */
-.nav-link {
-  position: relative;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
+/* Navbar specific utilities: handled above (avoid duplicates) */
 
 /* === Utility & Animations === */
 /* Reveal Animation */
@@ -791,6 +771,32 @@ input,
 textarea,
 .social-icon {
   transition: background-color var(--trans-base), color var(--trans-base), box-shadow var(--trans-base), border-color var(--trans-base), transform 0.3s ease;
+}
+
+/* A11y: visible focus rings */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent-primary) 70%, white 30%);
+  outline-offset: 3px;
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #heroBg {
+    transition: none !important;
+  }
 }
 
 /* Page Load Animation (Seamless Entrance) */

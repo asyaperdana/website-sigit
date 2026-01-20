@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { base } from "$app/paths";
     import { smoothScrollTo } from "$lib/utils/animations.js";
+    import { fade, fly } from "svelte/transition";
 
     let { isScrolled = $bindable(false) } = $props();
     let mobileMenuOpen = $state(false);
@@ -134,7 +135,11 @@
     <!-- Mobile Menu Overlay -->
     {#if mobileMenuOpen}
         <div
-            class="md:hidden absolute top-full left-1/2 -translate-x-1/2 w-[90%] mt-4 bg-[var(--bg)] backdrop-blur-2xl rounded-3xl border border-[var(--glass-border)] p-8 flex flex-col space-y-6 shadow-3xl text-center animate-in fade-in zoom-in-95 duration-300"
+            class="md:hidden absolute top-full left-1/2 -translate-x-1/2 w-[90%] mt-4 bg-[var(--bg)]/95 backdrop-blur-2xl rounded-3xl border border-[var(--glass-border)] p-8 flex flex-col space-y-6 shadow-2xl text-center"
+            in:fade={{ duration: 140 }}
+            out:fade={{ duration: 120 }}
+            in:fly={{ y: -6, duration: 180 }}
+            out:fly={{ y: -6, duration: 140 }}
         >
             <a
                 href="#about"

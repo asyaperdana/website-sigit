@@ -1,4 +1,6 @@
 <script>
+    import { fade, scale } from "svelte/transition";
+
     let { activeProject, onClose } = $props();
 
     /** @param {KeyboardEvent} e */
@@ -11,16 +13,20 @@
 
 {#if activeProject}
     <div
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all duration-300"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
         onclick={onClose}
         onkeydown={(e) => e.key === "Enter" && onClose()}
         role="button"
         tabindex="0"
+        in:fade={{ duration: 140 }}
+        out:fade={{ duration: 120 }}
     >
         <div
-            class="glass w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl relative flex flex-col scale-100 p-0"
+            class="glass w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl relative flex flex-col p-0"
             onclick={(e) => e.stopPropagation()}
             role="presentation"
+            in:scale={{ start: 0.98, duration: 160 }}
+            out:scale={{ start: 0.98, duration: 120 }}
         >
             <button
                 onclick={onClose}

@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { createMagneticEffect } from "$lib/utils/magnetic.js";
+    import { fly, fade } from "svelte/transition";
 
     let magneticBtn = $state();
     let isSubmitting = $state(false);
@@ -105,7 +106,11 @@
 <!-- Toast Notification -->
 {#if showToast}
     <div
-        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-2xl backdrop-blur-xl"
+        in:fly={{ y: 12, duration: 220 }}
+        out:fly={{ y: 12, duration: 180 }}
+        in:fade={{ duration: 160 }}
+        out:fade={{ duration: 120 }}
     >
         {formMessage}
     </div>
