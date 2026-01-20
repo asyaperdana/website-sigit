@@ -107,10 +107,8 @@
 {#if showToast}
     <div
         class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-2xl backdrop-blur-xl"
-        in:fly={{ y: 12, duration: 220 }}
-        out:fly={{ y: 12, duration: 180 }}
-        in:fade={{ duration: 160 }}
-        out:fade={{ duration: 120 }}
+        in:fly={{ y: 12, duration: 220, opacity: 0 }}
+        out:fly={{ y: 12, duration: 180, opacity: 0 }}
     >
         {formMessage}
     </div>

@@ -163,10 +163,8 @@
                     {#if showSuccess}
                         <div
                             class="bg-indigo-500/10 border border-indigo-500/50 text-indigo-300 p-4 rounded-xl flex items-center gap-3"
-                            in:fly={{ y: -10, duration: 220 }}
-                            out:fly={{ y: -10, duration: 160 }}
-                            in:fade={{ duration: 160 }}
-                            out:fade={{ duration: 120 }}
+                            in:fly={{ y: -10, duration: 220, opacity: 0 }}
+                            out:fly={{ y: -10, duration: 160, opacity: 0 }}
                         >
                             <i class="fas fa-check-circle text-indigo-400"></i>
                             <span class="text-sm font-medium"
@@ -178,10 +176,8 @@
                     {#if errorMessage}
                         <div
                             class="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl flex items-center gap-3"
-                            in:fly={{ y: -10, duration: 220 }}
-                            out:fly={{ y: -10, duration: 160 }}
-                            in:fade={{ duration: 160 }}
-                            out:fade={{ duration: 120 }}
+                            in:fly={{ y: -10, duration: 220, opacity: 0 }}
+                            out:fly={{ y: -10, duration: 160, opacity: 0 }}
                         >
                             <i class="fas fa-exclamation-circle"></i>
                             <span class="text-sm font-medium"
