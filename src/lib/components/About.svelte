@@ -67,7 +67,7 @@
                 class="font-bold text-indigo-400">pendekar kwetiau</span
             > tanpa tanding.
         </p>
-        <p class="italic text-[var(--text)] opacity-50 text-sm">
+        <p class="italic text-(--text) opacity-50 text-sm">
             (berhati-hatilah para wanita) 😎
         </p>
     </div>
