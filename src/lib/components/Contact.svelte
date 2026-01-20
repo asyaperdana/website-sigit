@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { createMagneticEffect } from "$lib/utils/magnetic.js";
-    import { fly, fade } from "svelte/transition";
+    import { fly } from "svelte/transition";
 
     let magneticBtn = $state();
     let isSubmitting = $state(false);

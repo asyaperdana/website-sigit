@@ -2,12 +2,21 @@
     import { onMount } from "svelte";
     import { base } from "$app/paths";
     import { smoothScrollTo } from "$lib/utils/animations.js";
-    import { fade, fly } from "svelte/transition";
+    import { fly } from "svelte/transition";
 
     let { isScrolled = $bindable(false) } = $props();
     let mobileMenuOpen = $state(false);
     let isDark = $state(true);
     let scrollProgress = $state(0);
+    let activeSection = $state("#about");
+
+    const navItems = [
+        { label: "About", href: "#about" },
+        { label: "Skills", href: "#skills" },
+        { label: "Portfolio", href: "#portfolio" },
+        { label: "Reviews", href: "#reviews" },
+        { label: "Contact", href: "#contact" },
+    ];
 
     onMount(() => {
         const handleScroll = () => {
@@ -19,13 +28,59 @@
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
 
+        /** @type {IntersectionObserver | null} */
+        let sectionObserver = null;
+        const sectionEls = /** @type {Element[]} */ (
+            navItems
+                .map((item) => document.querySelector(item.href))
+                .filter((el) => el !== null)
+        );
+
+        if (sectionEls.length > 0) {
+            sectionObserver = new IntersectionObserver(
+                (entries) => {
+                    // Pick the most visible intersecting section.
+                    const visible = entries
+                        .filter((e) => e.isIntersecting)
+                        .sort(
+                            (a, b) =>
+                                (b.intersectionRatio || 0) -
+                                (a.intersectionRatio || 0),
+                        );
+
+                    const best = visible[0];
+                    if (best?.target?.id) {
+                        activeSection = `#${best.target.id}`;
+                    }
+                },
+                {
+                    root: null,
+                    threshold: [0.2, 0.35, 0.5, 0.65, 0.8],
+                    // Bias toward the center of the viewport
+                    rootMargin: "-35% 0px -55% 0px",
+                },
+            );
+
+            sectionEls.forEach((el) => sectionObserver?.observe(el));
+        }
+
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
             isDark = false;
             document.body.classList.add("light");
         }
 
-        return () => window.removeEventListener("scroll", handleScroll);
+        /** @param {KeyboardEvent} e */
+        const handleKeydown = (e) => {
+            if (e.key === "Escape") mobileMenuOpen = false;
+        };
+        window.addEventListener("keydown", handleKeydown);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("keydown", handleKeydown);
+            sectionObserver?.disconnect();
+        };
     });
 
     function toggleTheme() {
@@ -71,36 +126,20 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6">
-                <a
-                    href="#about"
-                    onclick={(e) => handleNavClick(e, "#about")}
-                    class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-                    >About</a
-                >
-                <a
-                    href="#skills"
-                    onclick={(e) => handleNavClick(e, "#skills")}
-                    class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-                    >Skills</a
-                >
-                <a
-                    href="#portfolio"
-                    onclick={(e) => handleNavClick(e, "#portfolio")}
-                    class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-                    >Portfolio</a
-                >
-                <a
-                    href="#reviews"
-                    onclick={(e) => handleNavClick(e, "#reviews")}
-                    class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-                    >Reviews</a
-                >
-                <a
-                    href="#contact"
-                    onclick={(e) => handleNavClick(e, "#contact")}
-                    class="nav-link text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-                    >Contact</a
-                >
+                {#each navItems as item}
+                    <a
+                        href={item.href}
+                        onclick={(e) => handleNavClick(e, item.href)}
+                        aria-current={activeSection === item.href
+                            ? "page"
+                            : undefined}
+                        class="nav-link text-xs font-semibold uppercase tracking-widest transition-colors {activeSection ===
+                        item.href
+                            ? 'text-white'
+                            : 'text-gray-400 hover:text-white'}"
+                        >{item.label}</a
+                    >
+                {/each}
             </div>
 
             <!-- Action Divider -->
@@ -139,36 +178,20 @@
             in:fly={{ y: -6, duration: 200, opacity: 0 }}
             out:fly={{ y: -6, duration: 150, opacity: 0 }}
         >
-            <a
-                href="#about"
-                onclick={(e) => handleNavClick(e, "#about")}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
-                >About</a
-            >
-            <a
-                href="#skills"
-                onclick={(e) => handleNavClick(e, "#skills")}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
-                >Skills</a
-            >
-            <a
-                href="#portfolio"
-                onclick={(e) => handleNavClick(e, "#portfolio")}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
-                >Portfolio</a
-            >
-            <a
-                href="#reviews"
-                onclick={(e) => handleNavClick(e, "#reviews")}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
-                >Reviews</a
-            >
-            <a
-                href="#contact"
-                onclick={(e) => handleNavClick(e, "#contact")}
-                class="text-xl font-medium text-[var(--text)] hover:text-indigo-400 transition-all"
-                >Contact</a
-            >
+            {#each navItems as item}
+                <a
+                    href={item.href}
+                    onclick={(e) => handleNavClick(e, item.href)}
+                    aria-current={activeSection === item.href
+                        ? "page"
+                        : undefined}
+                    class="text-xl font-medium transition-all {activeSection ===
+                    item.href
+                        ? 'text-indigo-400'
+                        : 'text-[var(--text)] hover:text-indigo-400'}"
+                    >{item.label}</a
+                >
+            {/each}
         </div>
     {/if}
 

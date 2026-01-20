@@ -1,7 +1,48 @@
 <script>
+    import { onDestroy, tick } from "svelte";
     import { fade, scale } from "svelte/transition";
+    import { trapFocus } from "$lib/utils/a11y.js";
 
     let { activeProject, onClose } = $props();
+
+    /** @type {HTMLElement | null} */
+    let dialogEl = $state(null);
+    /** @type {HTMLButtonElement | null} */
+    let closeBtnEl = $state(null);
+    /** @type {HTMLElement | null} */
+    let lastActiveEl = null;
+    /** @type {(() => void) | null} */
+    let cleanupTrap = null;
+
+    $effect(() => {
+        if (!activeProject) return;
+
+        // Store focus to restore after closing.
+        lastActiveEl = /** @type {HTMLElement | null} */ (document.activeElement);
+
+        // Trap focus after DOM is updated.
+        (async () => {
+            await tick();
+            if (!dialogEl) return;
+            cleanupTrap?.();
+            cleanupTrap = trapFocus(dialogEl, {
+                initialFocus: closeBtnEl,
+                onEscape: onClose,
+            });
+        })();
+
+        return () => {
+            cleanupTrap?.();
+            cleanupTrap = null;
+            // Restore focus
+            lastActiveEl?.focus?.();
+            lastActiveEl = null;
+        };
+    });
+
+    onDestroy(() => {
+        cleanupTrap?.();
+    });
 
     /** @param {KeyboardEvent} e */
     function handleKeydown(e) {
@@ -22,13 +63,19 @@
         out:fade={{ duration: 120 }}
     >
         <div
+            bind:this={dialogEl}
             class="glass w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl relative flex flex-col p-0"
             onclick={(e) => e.stopPropagation()}
-            role="presentation"
+            onkeydown={(e) => e.key === "Enter" && e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Project details: ${activeProject.title}`}
+            tabindex="-1"
             in:scale={{ start: 0.98, duration: 160 }}
             out:scale={{ start: 0.98, duration: 120 }}
         >
             <button
+                bind:this={closeBtnEl}
                 onclick={onClose}
                 class="absolute top-4 right-4 bg-[var(--bg)]/80 text-[var(--text)] w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all z-10 shadow-lg text-lg"
                 aria-label="Close modal"

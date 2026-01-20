@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { fly, fade } from "svelte/transition";
+    import { fly } from "svelte/transition";
     import StarRating from "./StarRating.svelte";
     import ReviewCard from "./ReviewCard.svelte";
 
