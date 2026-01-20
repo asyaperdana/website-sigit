@@ -16,6 +16,7 @@
     import LifeStatsTicker from "$lib/components/LifeStatsTicker.svelte";
     import CustomCursor from "$lib/components/CustomCursor.svelte";
     import VanillaTilt from "vanilla-tilt";
+    import { setupKonamiCode, createConfetti } from "$lib/utils/quirky.js";
 
     let { data } = $props();
 
@@ -82,12 +83,45 @@
             });
         }
 
+        // Setup Konami Code Easter Egg 🎮
+        const konamiCleanup = setupKonamiCode(() => {
+            // Trigger epic easter egg!
+            createConfetti(50, 50);
+
+            const messages = [
+                "🎮 Konami Code Unlocked!",
+                "🌟 You're a legend!",
+                "⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️BA",
+                "🎊 Achievement Unlocked!",
+            ];
+
+            const randomMessage =
+                messages[Math.floor(Math.random() * messages.length)];
+
+            const toast = document.createElement("div");
+            toast.textContent = randomMessage;
+            toast.className =
+                "fixed top-24 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full shadow-2xl z-[100] animate-bounce-in text-lg font-bold";
+            document.body.appendChild(toast);
+
+            // Add extra confetti bursts
+            setTimeout(() => createConfetti(30, 50), 200);
+            setTimeout(() => createConfetti(70, 50), 400);
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                toast.style.transition = "opacity 0.5s";
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        });
+
         document.body.classList.add("page-loaded");
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
             observer.disconnect();
             lenis.destroy();
+            konamiCleanup();
         };
     });
 

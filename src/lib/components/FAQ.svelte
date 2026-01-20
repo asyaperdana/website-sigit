@@ -1,10 +1,27 @@
+<script>
+    /**
+     * @param {Event} e
+     */
+    function handleFAQClick(e) {
+        const target = e.currentTarget;
+        if (target instanceof HTMLElement) {
+            target.classList.add("jiggle");
+            setTimeout(() => target.classList.remove("jiggle"), 600);
+        }
+    }
+</script>
+
 <section id="faq" class="max-w-3xl mx-auto px-6 py-12 faq reveal">
     <h2 class="text-2xl font-bold mb-8 text-center text-[var(--text)]">
-        FAQ (Pertanyaan Netizen)
+        FAQ (Pertanyaan Netizen) 🤔
     </h2>
     <div class="space-y-4">
         <div
-            class="glass p-1 cursor-pointer transition-transform hover:scale-[1.01]"
+            class="glass p-1 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+            onclick={handleFAQClick}
+            onkeydown={(e) => e.key === "Enter" && handleFAQClick(e)}
+            role="button"
+            tabindex="0"
         >
             <details class="group">
                 <summary
@@ -25,7 +42,11 @@
             </details>
         </div>
         <div
-            class="glass p-1 cursor-pointer transition-transform hover:scale-[1.01]"
+            class="glass p-1 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+            onclick={handleFAQClick}
+            onkeydown={(e) => e.key === "Enter" && handleFAQClick(e)}
+            role="button"
+            tabindex="0"
         >
             <details class="group">
                 <summary
@@ -46,7 +67,11 @@
             </details>
         </div>
         <div
-            class="glass p-1 cursor-pointer transition-transform hover:scale-[1.01]"
+            class="glass p-1 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+            onclick={handleFAQClick}
+            onkeydown={(e) => e.key === "Enter" && handleFAQClick(e)}
+            role="button"
+            tabindex="0"
         >
             <details class="group">
                 <summary

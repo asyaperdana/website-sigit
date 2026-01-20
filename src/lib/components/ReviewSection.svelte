@@ -62,11 +62,15 @@
      */
     async function handleSubmit(event) {
         event.preventDefault();
+
+        const form = /** @type {HTMLFormElement} */ (event.target);
+        if (!form) return;
+
         isSubmitting = true;
         showSuccess = false;
         errorMessage = "";
 
-        const formData = new FormData(event.target);
+        const formData = new FormData(form);
         const userName = formData.get("userName")?.toString().trim();
         const comment = formData.get("comment")?.toString().trim();
         const rating = selectedRating;
@@ -108,7 +112,7 @@
 
         // Reset form
         selectedRating = 0;
-        event.target.reset();
+        form.reset();
 
         // Show success message
         isSubmitting = false;

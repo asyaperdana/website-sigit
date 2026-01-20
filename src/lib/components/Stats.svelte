@@ -1,7 +1,16 @@
 <script>
     import { onMount } from "svelte";
+    import { createFloatingEmoji } from "$lib/utils/quirky.js";
 
     let statsSection = $state();
+
+    /** @type {Record<string, string[]>} */
+    const statEmojis = {
+        "Projects Completed": ["🎉", "🚀", "✨", "🎯", "💪"],
+        "Client Satisfied": ["😍", "🥳", "👍", "🌟", "💯"],
+        "Matcha Dosage": ["🍵", "🍃", "💚", "☕", "🌿"],
+        "Years Surviving": ["🎂", "🎈", "🥂", "🎊", "⏰"],
+    };
 
     onMount(() => {
         const counterObserver = new IntersectionObserver(
@@ -42,13 +51,38 @@
             requestAnimationFrame(update);
         });
     }
+
+    /**
+     * @param {MouseEvent} e
+     * @param {string} label
+     */
+    function handleStatClick(e, label) {
+        const emojis = statEmojis[label];
+        if (!emojis) return;
+
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        createFloatingEmoji(document.body, emoji, e.clientX, e.clientY);
+    }
 </script>
 
 <section bind:this={statsSection} class="py-24 px-6 reveal">
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {#each [{ label: "Projects Completed", target: "150", suffix: "+" }, { label: "Client Satisfied", target: "99", suffix: "%" }, { label: "Matcha Dosage", target: "2500", suffix: "" }, { label: "Years Surviving", target: "12", suffix: "" }] as stat}
             <div
-                class="glass p-8 text-center group transition-all duration-500 hover:bg-[var(--bg)]/10"
+                class="glass p-8 text-center group transition-all duration-500 hover:bg-[var(--bg)]/10 cursor-pointer active:scale-95"
+                onclick={(e) => handleStatClick(e, stat.label)}
+                onkeydown={(e) => {
+                    if (e.key === "Enter") {
+                        const mouseEvent = new MouseEvent("click", {
+                            clientX: 0,
+                            clientY: 0,
+                        });
+                        handleStatClick(mouseEvent, stat.label);
+                    }
+                }}
+                role="button"
+                tabindex="0"
+                title="Click me for a surprise! 🎉"
             >
                 <div
                     class="text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tighter mb-2 flex items-center justify-center gap-1"
