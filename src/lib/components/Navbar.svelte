@@ -136,10 +136,8 @@
     {#if mobileMenuOpen}
         <div
             class="md:hidden absolute top-full left-1/2 -translate-x-1/2 w-[90%] mt-4 bg-[var(--bg)]/95 backdrop-blur-2xl rounded-3xl border border-[var(--glass-border)] p-8 flex flex-col space-y-6 shadow-2xl text-center"
-            in:fade={{ duration: 140 }}
-            out:fade={{ duration: 120 }}
-            in:fly={{ y: -6, duration: 180 }}
-            out:fly={{ y: -6, duration: 140 }}
+            in:fly={{ y: -6, duration: 200, opacity: 0 }}
+            out:fly={{ y: -6, duration: 150, opacity: 0 }}
         >
             <a
                 href="#about"
