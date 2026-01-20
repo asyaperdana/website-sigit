@@ -270,7 +270,7 @@
             </div>
 
             <div
-                class="flex-1 overflow-y-auto space-y-6 pr-2 custom-scrollbar scroll-smooth"
+                class="flex-1 overflow-y-auto space-y-4 pr-4 custom-scrollbar scroll-smooth"
             >
                 {#if localReviews.length === 0}
                     <div
@@ -292,18 +292,35 @@
 </section>
 
 <style>
-    /* Custom scrollbar for a cleaner look */
+    /* Custom scrollbar for a cleaner, more visible look */
     .custom-scrollbar::-webkit-scrollbar {
-        width: 4px;
+        width: 8px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 10px;
+        margin: 4px 0;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.05);
+        background: linear-gradient(
+            180deg,
+            rgba(99, 102, 241, 0.3),
+            rgba(139, 92, 246, 0.3)
+        );
         border-radius: 10px;
+        transition: background 0.3s ease;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: rgba(129, 140, 248, 0.2);
+        background: linear-gradient(
+            180deg,
+            rgba(99, 102, 241, 0.5),
+            rgba(139, 92, 246, 0.5)
+        );
+    }
+
+    /* Firefox scrollbar */
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(99, 102, 241, 0.3) rgba(255, 255, 255, 0.02);
     }
 </style>
