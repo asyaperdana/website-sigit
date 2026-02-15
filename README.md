@@ -24,16 +24,19 @@ src/
 ## 💻 Development
 
 1.  **Install Dependencies:**
+
     ```bash
     npm install
     ```
 
 2.  **Start Dev Server:**
+
     ```bash
     npm run dev
     ```
 
 3.  **Lint & Format:**
+
     ```bash
     npm run lint
     npm run format
@@ -56,4 +59,5 @@ Commits to `main` branch automatically trigger a GitHub Action to build and depl
 - **Interactive Animations**
 
 ---
+
 Made with ❤️ by Sigit

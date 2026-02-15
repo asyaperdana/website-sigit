@@ -1,30 +1,30 @@
 :root {
-  /* Colors - More Elegant Scale */
-  --bg-dark: #030712;
-  /* Richer Dark */
-  --text-dark: #f8fafc;
-  --bg-light: #f8fafc;
-  --text-light: #0f172a;
-  --accent-primary: #818cf8;
-  /* Soft Indigo */
-  --accent-secondary: #c084fc;
-  /* Soft Purple */
-  /* New Theme Variables */
-  --bg: var(--bg-dark);
-  --text: var(--text-dark);
-  --glass-bg: var(--glass-bg-dark);
-  --glass-border: var(--glass-border-dark);
-  --card-bg: rgba(30, 41, 59, 0.4);
-  --nav-bg: rgba(17, 24, 39, 0.4);
-  /* Glass Colors */
-  --glass-bg-dark: rgba(30, 41, 59, 0.4);
-  --glass-border-dark: rgba(255, 255, 255, 0.05);
-  --glass-bg-light: rgba(255, 255, 255, 0.7);
-  --glass-border-light: rgba(30, 27, 75, 0.05);
-  /* Transitions - More Responsive */
-  --trans-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  --trans-elastic: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  /* Compatibility aliases */
-  --trans-base: var(--trans-smooth);
-  --primary: var(--accent-primary);
+	/* Colors - More Elegant Scale */
+	--bg-dark: #030712;
+	/* Richer Dark */
+	--text-dark: #f8fafc;
+	--bg-light: #f8fafc;
+	--text-light: #0f172a;
+	--accent-primary: #818cf8;
+	/* Soft Indigo */
+	--accent-secondary: #c084fc;
+	/* Soft Purple */
+	/* New Theme Variables */
+	--bg: var(--bg-dark);
+	--text: var(--text-dark);
+	--glass-bg: var(--glass-bg-dark);
+	--glass-border: var(--glass-border-dark);
+	--card-bg: rgba(30, 41, 59, 0.4);
+	--nav-bg: rgba(17, 24, 39, 0.4);
+	/* Glass Colors */
+	--glass-bg-dark: rgba(30, 41, 59, 0.4);
+	--glass-border-dark: rgba(255, 255, 255, 0.05);
+	--glass-bg-light: rgba(255, 255, 255, 0.7);
+	--glass-border-light: rgba(30, 27, 75, 0.05);
+	/* Transitions - More Responsive */
+	--trans-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	--trans-elastic: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	/* Compatibility aliases */
+	--trans-base: var(--trans-smooth);
+	--primary: var(--accent-primary);
 }
