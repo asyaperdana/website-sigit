@@ -1,0 +1,99 @@
+/* === Global Stylings === */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  transition: background-color var(--trans-smooth), color var(--trans-smooth);
+  background-color: var(--bg);
+  color: var(--text);
+  scroll-behavior: auto !important;
+  overflow-x: hidden;
+  position: relative;
+}
+/* Base mesh background with Grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+/* Page Load Animation (Seamless Entrance) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--bg-dark);
+  z-index: 9999;
+  transition: opacity 1s ease-out;
+  pointer-events: none;
+}
+body.page-loaded::before {
+  opacity: 0;
+}
+/* Selections */
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  opacity: 0.3;
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+/* Common Transitions */
+input, textarea, .social-icon {
+  transition: background-color var(--trans-base), color var(--trans-base), box-shadow var(--trans-base), border-color var(--trans-base), transform 0.3s ease;
+}
+/* A11y: visible focus rings */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent-primary) 70%, white 30%);
+  outline-offset: 3px;
+}
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  #heroBg {
+    transition: none !important;
+  }
+}
