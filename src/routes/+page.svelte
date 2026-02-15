@@ -18,8 +18,6 @@
 	import VanillaTilt from 'vanilla-tilt';
 	import { setupKonamiCode, createConfetti } from '$lib/utils/quirky.js';
 
-	let { data } = $props();
-
 	let isScrolled = $state(false);
 	let showBackToTop = $state(false);
 	let activeProject = $state(null);
