@@ -23,7 +23,7 @@
 
 <section id="portfolio" class="py-20 px-6 reveal">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl font-bold mb-10 text-center tracking-tight text-[var(--text)]">
+		<h2 class="text-3xl font-bold mb-10 text-center tracking-tight text-(--text)">
 			Portfolio
 		</h2>
 		<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -44,11 +44,11 @@
 					</div>
 					<div class="p-6">
 						<h4
-							class="font-bold text-lg mb-2 text-[var(--text)] group-hover:text-indigo-500 transition-colors uppercase tracking-wider"
+							class="font-bold text-lg mb-2 text-(--text) group-hover:text-indigo-500 transition-colors uppercase tracking-wider"
 						>
 							{project.title}
 						</h4>
-						<p class="text-sm text-[var(--text)] opacity-50 line-clamp-2 font-light">
+						<p class="text-sm text-(--text) opacity-50 line-clamp-2 font-light">
 							{project.title === 'Website E-commerce'
 								? 'Modern shopping experience with ultra-fast kwetiau delivery logic.'
 								: project.title === 'Aplikasi Mobile'

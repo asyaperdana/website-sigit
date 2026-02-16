@@ -139,7 +139,7 @@
 	/>
 </svelte:head>
 
-<div class="bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 min-h-screen">
+<div class="bg-(--bg) text-(--text) transition-colors duration-500 min-h-screen">
 	<Navbar bind:isScrolled />
 
 	<Hero />

@@ -55,28 +55,28 @@
 
 <section id="contact" class="max-w-4xl mx-auto px-6 py-12 reveal kontak">
 	<div class="glass p-8">
-		<h2 class="text-2xl font-bold mb-8 text-center text-[var(--text)]">Kontak Saya</h2>
+		<h2 class="text-2xl font-bold mb-8 text-center text-(--text)">Kontak Saya</h2>
 		<form class="space-y-4" onsubmit={handleSubmit}>
 			<input
 				type="text"
 				name="nama"
 				placeholder="Nama"
 				required
-				class="w-full p-4 rounded-xl bg-[var(--bg)]/10 border border-[var(--glass-border)] text-[var(--text)] outline-none focus:border-indigo-500 transition-all"
+				class="w-full p-4 rounded-xl bg-(--bg)/10 border border-(--glass-border) text-(--text) outline-none focus:border-indigo-500 transition-all"
 			/>
 			<input
 				type="email"
 				name="email"
 				placeholder="Email"
 				required
-				class="w-full p-4 rounded-xl bg-[var(--bg)]/10 border border-[var(--glass-border)] text-[var(--text)] outline-none focus:border-indigo-500 transition-all"
+				class="w-full p-4 rounded-xl bg-(--bg)/10 border border-(--glass-border) text-(--text) outline-none focus:border-indigo-500 transition-all"
 			/>
 			<textarea
 				name="pesan"
 				rows="4"
 				placeholder="Pesan"
 				required
-				class="w-full p-4 rounded-xl bg-[var(--bg)]/10 border border-[var(--glass-border)] text-[var(--text)] outline-none focus:border-indigo-500 transition-all"
+				class="w-full p-4 rounded-xl bg-(--bg)/10 border border-(--glass-border) text-(--text) outline-none focus:border-indigo-500 transition-all"
 			></textarea>
 			<button
 				type="submit"

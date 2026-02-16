@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<footer class="py-12 text-center text-[var(--text)] opacity-40 text-sm">
+<footer class="py-12 text-center text-(--text) opacity-40 text-sm">
 	<div class="flex justify-center gap-8 mb-6">
 		<a
 			href="https://facebook.com"

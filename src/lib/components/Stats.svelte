@@ -68,7 +68,7 @@
 	<div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
 		{#each [{ label: 'Projects Completed', target: '150', suffix: '+' }, { label: 'Client Satisfied', target: '99', suffix: '%' }, { label: 'Matcha Dosage', target: '2500', suffix: '' }, { label: 'Years Surviving', target: '12', suffix: '' }] as stat (stat.label)}
 			<div
-				class="glass p-8 text-center group transition-all duration-500 hover:bg-[var(--bg)]/10 cursor-pointer active:scale-95"
+				class="glass p-8 text-center group transition-all duration-500 hover:bg-(--bg)/10 cursor-pointer active:scale-95"
 				onclick={(e) => handleStatClick(e, stat.label)}
 				onkeydown={(e) => {
 					if (e.key === 'Enter') {
@@ -84,12 +84,12 @@
 				title="Click me for a surprise! 🎉"
 			>
 				<div
-					class="text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tighter mb-2 flex items-center justify-center gap-1"
+					class="text-4xl md:text-5xl font-bold text-(--text) tracking-tighter mb-2 flex items-center justify-center gap-1"
 				>
 					<span class="counter text-indigo-500" data-target={stat.target}>0</span>
 					<span class="text-xl text-indigo-600/30 opacity-50">{stat.suffix}</span>
 				</div>
-				<p class="text-[var(--text)] opacity-40 text-xs font-bold uppercase tracking-[0.2em]">
+				<p class="text-(--text) opacity-40 text-xs font-bold uppercase tracking-[0.2em]">
 					{stat.label}
 				</p>
 			</div>

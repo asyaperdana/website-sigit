@@ -45,7 +45,7 @@
 			<i
 				class="fas fa-star {star <= (hoverRating || rating)
 					? 'text-yellow-400'
-					: 'text-[var(--text)] opacity-20'}"
+					: 'text-(--text) opacity-20'}"
 			></i>
 		</button>
 	{/each}

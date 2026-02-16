@@ -122,13 +122,13 @@
 
 <section id="reviews" class="max-w-6xl mx-auto px-6 py-24 reveal">
 	<div class="text-center mb-16 space-y-4">
-		<h2 class="text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tighter">
+		<h2 class="text-4xl md:text-5xl font-bold text-(--text) tracking-tighter">
 			Apa Kata <span
-				class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500"
+				class="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500"
 				>Netizen?</span
 			>
 		</h2>
-		<p class="text-[var(--text)] opacity-60 max-w-2xl mx-auto font-light">
+		<p class="text-(--text) opacity-60 max-w-2xl mx-auto font-light">
 			Tempat berkumpulnya para pengagum arsitektur kwetiau dan penikmat logika matcha.
 		</p>
 	</div>
@@ -142,7 +142,7 @@
 					class="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700"
 				></div>
 
-				<h3 class="text-2xl font-bold text-[var(--text)] mb-8 border-b border-indigo-500/20 pb-4">
+				<h3 class="text-2xl font-bold text-(--text) mb-8 border-b border-indigo-500/20 pb-4">
 					Tulis Review
 				</h3>
 
@@ -189,7 +189,7 @@
 							name="userName"
 							placeholder="Sigit Setengah Kopling"
 							required
-							class="w-full bg-[var(--bg)]/10 border border-[var(--glass-border)] rounded-xl px-5 py-4 text-[var(--text)] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all outline-none"
+							class="w-full bg-(--bg)/10 border border-(--glass-border) rounded-xl px-5 py-4 text-(--text) focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all outline-none"
 						/>
 					</div>
 
@@ -203,7 +203,7 @@
 							rows="4"
 							placeholder="Gimana kesan pesan kamu tentang Sigit?"
 							required
-							class="w-full bg-[var(--bg)]/10 border border-[var(--glass-border)] rounded-xl px-5 py-4 text-[var(--text)] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all outline-none resize-none"
+							class="w-full bg-(--bg)/10 border border-(--glass-border) rounded-xl px-5 py-4 text-(--text) focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all outline-none resize-none"
 						></textarea>
 					</div>
 
@@ -229,9 +229,9 @@
 					<div class="p-3 bg-indigo-500/10 rounded-xl">
 						<i class="fas fa-comments text-indigo-400"></i>
 					</div>
-					<span class="text-xl font-bold text-[var(--text)]">Review Terbaru</span>
+					<span class="text-xl font-bold text-(--text)">Review Terbaru</span>
 				</div>
-				<div class="px-4 py-2 bg-[var(--bg)]/5 rounded-full border border-[var(--glass-border)]">
+				<div class="px-4 py-2 bg-(--bg)/5 rounded-full border border-(--glass-border)">
 					<span class="text-xs font-mono text-indigo-500 uppercase tracking-widest"
 						>{localReviews.length} Total Reviews</span
 					>

@@ -15,7 +15,7 @@
 </script>
 
 <div
-	class="fixed bottom-0 left-0 w-full bg-[var(--bg)]/90 backdrop-blur-md text-[var(--text)] text-[10px] uppercase tracking-widest py-1.5 z-40 overflow-hidden border-t border-indigo-500/20"
+	class="fixed bottom-0 left-0 w-full bg-(--bg)/90 backdrop-blur-md text-(--text) text-[10px] uppercase tracking-widest py-1.5 z-40 overflow-hidden border-t border-indigo-500/20"
 >
 	<div class="marquee whitespace-nowrap flex animate-marquee">
 		{#each [0, 1, 2] as i (i)}

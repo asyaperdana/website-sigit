@@ -100,14 +100,14 @@
 	<!-- Centered Pill Wrapper -->
 	<div class="max-w-fit mx-auto px-4">
 		<div
-			class="flex items-center gap-6 px-6 py-3 rounded-full border border-white/10 bg-[var(--nav-bg)] backdrop-blur-xl shadow-2xl transition-all duration-500 {isScrolled
+			class="flex items-center gap-6 px-6 py-3 rounded-full border border-white/10 bg-(--nav-bg) backdrop-blur-xl shadow-2xl transition-all duration-500 {isScrolled
 				? 'scale-95 border-indigo-500/20'
 				: ''}"
 		>
 			<!-- Logo -->
 			<a
 				href={base || '/'}
-				class="text-xl font-bold tracking-tight text-[var(--text)] hover:text-indigo-400 transition-colors shrink-0"
+				class="text-xl font-bold tracking-tight text-(--text) hover:text-indigo-400 transition-colors shrink-0"
 			>
 				Sigit<span class="text-indigo-500">.</span>
 			</a>
@@ -146,7 +146,7 @@
 				<!-- Mobile Trigger -->
 				<button
 					onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-					class="md:hidden text-[var(--text)] focus:outline-none"
+					class="md:hidden text-(--text) focus:outline-none"
 					aria-label="Toggle mobile menu"
 				>
 					<i class="fas {mobileMenuOpen ? 'fa-times' : 'fa-bars text-sm'}"></i>
@@ -158,7 +158,7 @@
 	<!-- Mobile Menu Overlay -->
 	{#if mobileMenuOpen}
 		<div
-			class="md:hidden absolute top-full left-1/2 -translate-x-1/2 w-[90%] mt-4 bg-[var(--bg)]/95 backdrop-blur-2xl rounded-3xl border border-[var(--glass-border)] p-8 flex flex-col space-y-6 shadow-2xl text-center"
+			class="md:hidden absolute top-full left-1/2 -translate-x-1/2 w-[90%] mt-4 bg-(--bg)/95 backdrop-blur-2xl rounded-3xl border border-(--glass-border) p-8 flex flex-col space-y-6 shadow-2xl text-center"
 			in:fly={{ y: -6, duration: 200, opacity: 0 }}
 			out:fly={{ y: -6, duration: 150, opacity: 0 }}
 		>
@@ -169,7 +169,7 @@
 					aria-current={activeSection === item.href ? 'page' : undefined}
 					class="text-xl font-medium transition-all {activeSection === item.href
 						? 'text-indigo-400'
-						: 'text-[var(--text)] hover:text-indigo-400'}">{item.label}</a
+						: 'text-(--text) hover:text-indigo-400'}">{item.label}</a
 				>
 			{/each}
 		</div>
@@ -177,7 +177,7 @@
 
 	<!-- Progress Bar Integrated -->
 	<div
-		class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-indigo-500/50 blur-[1px] transition-all duration-300 pointer-events-none"
+		class="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-indigo-500/50 blur-[1px] transition-all duration-300 pointer-events-none"
 		style="width: {Math.min(scrollProgress, 100)}%"
 	></div>
 </nav>
