@@ -23,9 +23,7 @@
 
 <section id="portfolio" class="py-20 px-6 reveal">
 	<div class="max-w-6xl mx-auto">
-		<h2 class="text-3xl font-bold mb-10 text-center tracking-tight text-(--text)">
-			Portfolio
-		</h2>
+		<h2 class="text-3xl font-bold mb-10 text-center tracking-tight text-(--text)">Portfolio</h2>
 		<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
 			{#each projects as project (project.title)}
 				<div
