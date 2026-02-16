@@ -45,6 +45,8 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          NODE_ENV: production
         run: npm run build
 
       # actions/upload-pages-artifact@v3.0.1
