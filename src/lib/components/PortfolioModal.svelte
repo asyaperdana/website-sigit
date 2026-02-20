@@ -5,16 +5,16 @@
 
 	let { activeProject, onClose } = $props();
 
-	let /* ts: HTMLElement | null */ dialogEl = $state(null);
-	let /* ts: HTMLButtonElement | null */ closeBtnEl = $state(null);
-	let /* ts: HTMLElement | null */ lastActiveEl = null;
-	let /* ts: (() => void) | null */ cleanupTrap = null;
+	let dialogEl: HTMLElement | null = $state(null);
+	let closeBtnEl: HTMLButtonElement | null = $state(null);
+	let lastActiveEl: HTMLElement | null = null;
+	let cleanupTrap: (() => void) | null = null;
 
 	$effect(() => {
 		if (!activeProject) return;
 
 		// Store focus to restore after closing.
-		lastActiveEl = (document.activeElement as HTMLElement | null);
+		lastActiveEl = document.activeElement as HTMLElement | null;
 
 		// Trap focus after DOM is updated.
 		(async () => {
@@ -72,7 +72,7 @@
 			<button
 				bind:this={closeBtnEl}
 				onclick={onClose}
-				class="absolute top-4 right-4 bg-[var(--bg)]/80 text-[var(--text)] w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all z-10 shadow-lg text-lg"
+				class="absolute top-4 right-4 bg-(--bg)/80 text-(--text) w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all z-10 shadow-lg text-lg"
 				aria-label="Close modal"
 			>
 				<i class="fas fa-times"></i>
@@ -83,20 +83,18 @@
 					alt={activeProject.title}
 					class="w-full h-48 sm:h-72 object-cover rounded-t-xl"
 				/>
-				<div
-					class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent opacity-60"
-				></div>
+				<div class="absolute inset-0 bg-linear-to-t from-(--bg) to-transparent opacity-60"></div>
 			</div>
 			<div class="p-6 md:p-8 flex-1">
 				<h3
-					class="text-2xl md:text-3xl font-bold mb-3 text-indigo-500 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500"
+					class="text-2xl md:text-3xl font-bold mb-3 bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-purple-500"
 				>
 					{activeProject.title}
 				</h3>
-				<p class="text-[var(--text)] opacity-70 leading-relaxed mb-6 text-base md:text-lg">
+				<p class="text-(--text) opacity-70 leading-relaxed mb-6 text-base md:text-lg">
 					{activeProject.desc}
 				</p>
-				<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-[var(--glass-border)]">
+				<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-(--glass-border)">
 					<button
 						class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
 					>

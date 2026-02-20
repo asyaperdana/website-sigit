@@ -5,9 +5,10 @@
 	import { createRipple, smoothScrollTo } from '$lib/utils/animations';
 	import { createMagneticEffect } from '$lib/utils/magnetic';
 
-	let magneticBtn = $state();
+	let magneticBtn: HTMLElement | undefined = $state();
 
 	onMount(() => {
+		if (!magneticBtn) return;
 		const cleanup = createMagneticEffect(magneticBtn);
 		return cleanup;
 	});

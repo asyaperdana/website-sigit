@@ -1,23 +1,14 @@
-// @ts-check
-
 /**
  * Magnetic button effect using RAF for optimal performance
- * @param {HTMLElement} element - Button element
- * @param {number} [strength=0.3] - Magnetic strength
- * @returns {() => void} Cleanup function
  */
-export function createMagneticEffect(element, strength = 0.3) {
+export function createMagneticEffect(element: HTMLElement, strength = 0.3): () => void {
 	if (!element || window.innerWidth < 1024) return () => {};
 
-	/** @type {number | null} */
-	let rafId = null;
+	let rafId: number | null = null;
 	let targetX = 0;
 	let targetY = 0;
 
-	/**
-	 * @param {MouseEvent} e
-	 */
-	const handleMouseMove = (e) => {
+	const handleMouseMove = (e: MouseEvent) => {
 		const rect = element.getBoundingClientRect();
 		const centerX = rect.left + rect.width / 2;
 		const centerY = rect.top + rect.height / 2;

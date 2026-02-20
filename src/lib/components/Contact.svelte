@@ -4,24 +4,22 @@
 	import { createMagneticEffect } from '$lib/utils/magnetic';
 	import { fly } from 'svelte/transition';
 
-	let magneticBtn = $state();
+	let magneticBtn: HTMLElement | undefined = $state();
 	let isSubmitting = $state(false);
 	let formMessage = $state('');
 	let showToast = $state(false);
 
 	onMount(() => {
+		if (!magneticBtn) return;
 		const cleanup = createMagneticEffect(magneticBtn);
 		return cleanup;
 	});
 
-	/**
-	 * @param {SubmitEvent} e
-	 */
-	async function handleSubmit(e) {
+	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		isSubmitting = true;
 
-		const formData = new FormData((e.target as HTMLFormElement));
+		const formData = new FormData(e.target as HTMLFormElement);
 		const data = {
 			nama: formData.get('nama'),
 			email: formData.get('email'),

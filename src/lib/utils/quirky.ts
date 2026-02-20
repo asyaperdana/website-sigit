@@ -6,9 +6,8 @@
 
 /**
  * Random quirky tooltips for skills
- * @type {Record<string, string[]>}
  */
-export const quirkySkilltips = {
+export const quirkySkilltips: Record<string, string[]> = {
 	HTML5: [
 		'The skeleton of the web 💀',
 		'Not just divs, I promise',
@@ -49,10 +48,8 @@ export const quirkySkilltips = {
 
 /**
  * Get random quirky tooltip for a skill
- * @param {string} skillName
- * @returns {string}
  */
-export function getRandomTooltip(skillName) {
+export function getRandomTooltip(skillName: string): string {
 	const tips = quirkySkilltips[skillName];
 	if (!tips) return '';
 	return tips[Math.floor(Math.random() * tips.length)];
@@ -60,12 +57,13 @@ export function getRandomTooltip(skillName) {
 
 /**
  * Create floating emoji animation
- * @param {HTMLElement} container
- * @param {string} emoji
- * @param {number} x - X position
- * @param {number} y - Y position
  */
-export function createFloatingEmoji(container, emoji, x, y) {
+export function createFloatingEmoji(
+	container: HTMLElement,
+	emoji: string,
+	x: number,
+	y: number
+): void {
 	const emojiEl = document.createElement('div');
 	emojiEl.textContent = emoji;
 	emojiEl.className = 'floating-emoji';
@@ -88,10 +86,8 @@ export function createFloatingEmoji(container, emoji, x, y) {
 
 /**
  * Create confetti explosion
- * @param {number} x - X position (percentage)
- * @param {number} y - Y position (percentage)
  */
-export function createConfetti(x = 50, y = 50) {
+export function createConfetti(x = 50, y = 50): void {
 	const colors = ['#6366f1', '#c084fc', '#ec4899', '#f59e0b', '#10b981'];
 	const confettiCount = 30;
 
@@ -130,10 +126,8 @@ export function createConfetti(x = 50, y = 50) {
 	}
 }
 
-/**
- * Quirky success messages
- */
-export const successMessages = [
+/** Quirky success messages */
+export const successMessages: string[] = [
 	'🎉 Mantap jiwa!',
 	'✨ Keren banget!',
 	'🚀 Langsung meluncur!',
@@ -144,10 +138,8 @@ export const successMessages = [
 	'🌟 Brilliant!'
 ];
 
-/**
- * Quirky error messages
- */
-export const errorMessages = [
+/** Quirky error messages */
+export const errorMessages: string[] = [
 	'🤔 Hmm, ada yang janggal nih...',
 	'😅 Oops! Coba lagi dong...',
 	'🔧 Ada yang perlu diperbaiki...',
@@ -160,19 +152,15 @@ export const errorMessages = [
 
 /**
  * Get random message from array
- * @param {string[]} messages
- * @returns {string}
  */
-export function getRandomMessage(messages) {
+export function getRandomMessage(messages: string[]): string {
 	return messages[Math.floor(Math.random() * messages.length)];
 }
 
 /**
  * Konami code detection
- * @param {Function} callback
- * @returns {Function} cleanup function
  */
-export function setupKonamiCode(callback) {
+export function setupKonamiCode(callback: () => void): () => void {
 	const konamiCode = [
 		'ArrowUp',
 		'ArrowUp',
@@ -187,7 +175,7 @@ export function setupKonamiCode(callback) {
 	];
 	let position = 0;
 
-	const handler = (/** @type {KeyboardEvent} */ e) => {
+	const handler = (e: KeyboardEvent) => {
 		if (e.key === konamiCode[position]) {
 			position++;
 			if (position === konamiCode.length) {
@@ -205,9 +193,8 @@ export function setupKonamiCode(callback) {
 
 /**
  * Add wobble effect to element
- * @param {HTMLElement} element
  */
-export function wobbleElement(element) {
+export function wobbleElement(element: HTMLElement): void {
 	element.animate(
 		[
 			{ transform: 'rotate(0deg)' },
@@ -226,11 +213,8 @@ export function wobbleElement(element) {
 
 /**
  * Create typing effect
- * @param {HTMLElement} element
- * @param {string} text
- * @param {number} speed - milliseconds per character
  */
-export function typewriterEffect(element, text, speed = 50) {
+export function typewriterEffect(element: HTMLElement, text: string, speed = 50): void {
 	let i = 0;
 	element.textContent = '';
 

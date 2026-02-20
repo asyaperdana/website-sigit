@@ -1,28 +1,22 @@
-// @ts-check
-
 /**
  * Trap focus within a container element.
  * Returns a cleanup function that removes event listeners.
- *
- * @param {HTMLElement} container
- * @param {{
- *   initialFocus?: HTMLElement | null,
- *   onEscape?: (() => void) | null
- * }} [options]
- * @returns {() => void}
  */
-export function trapFocus(container, options = {}) {
+interface TrapFocusOptions {
+	initialFocus?: HTMLElement | null;
+	onEscape?: (() => void) | null;
+}
+
+export function trapFocus(container: HTMLElement, options: TrapFocusOptions = {}): () => void {
 	const { initialFocus = null, onEscape = null } = options;
 	if (!container) return () => {};
 
-	/** @param {HTMLElement} el */
-	const isVisible = (el) => {
+	const isVisible = (el: HTMLElement): boolean => {
 		const style = window.getComputedStyle(el);
 		return style.visibility !== 'hidden' && style.display !== 'none';
 	};
 
-	/** @returns {HTMLElement[]} */
-	const getFocusable = () => {
+	const getFocusable = (): HTMLElement[] => {
 		const selector = [
 			'a[href]',
 			'button:not([disabled])',
@@ -31,7 +25,7 @@ export function trapFocus(container, options = {}) {
 			'select:not([disabled])',
 			'[tabindex]:not([tabindex="-1"])'
 		].join(',');
-		return /** @type {HTMLElement[]} */ (Array.from(container.querySelectorAll(selector))).filter(
+		return (Array.from(container.querySelectorAll(selector)) as HTMLElement[]).filter(
 			(el) => !el.hasAttribute('disabled') && el.tabIndex !== -1 && isVisible(el)
 		);
 	};
@@ -41,8 +35,7 @@ export function trapFocus(container, options = {}) {
 		(initialFocus ?? focusables[0])?.focus?.();
 	};
 
-	/** @param {KeyboardEvent} e */
-	const onKeyDown = (e) => {
+	const onKeyDown = (e: KeyboardEvent) => {
 		if (e.key === 'Escape' && onEscape) {
 			onEscape();
 			return;
@@ -57,7 +50,7 @@ export function trapFocus(container, options = {}) {
 
 		const first = focusables[0];
 		const last = focusables[focusables.length - 1];
-		const active = /** @type {HTMLElement | null} */ (document.activeElement);
+		const active = document.activeElement as HTMLElement | null;
 
 		if (e.shiftKey) {
 			if (!active || active === first || !container.contains(active)) {

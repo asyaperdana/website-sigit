@@ -3,7 +3,7 @@
 	import { base } from '$app/paths';
 	import { createConfetti, wobbleElement } from '$lib/utils/quirky';
 
-	let profilePicEl = $state();
+	let profilePicEl: HTMLImageElement | undefined = $state();
 	let clickCount = $state(0);
 	let lastClickTime = $state(0);
 
@@ -19,6 +19,7 @@
 			clickCount++;
 		}
 
+		if (!profilePicEl) return;
 		profilePicEl.classList.remove('shake-anim', 'spin-anim');
 		void profilePicEl.offsetWidth; // trigger reflow
 

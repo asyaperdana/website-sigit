@@ -27,10 +27,10 @@
 		};
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
-		let /* ts: IntersectionObserver | null */ sectionObserver = null;
-		const sectionEls = (
-			navItems.map((item as Element[]) => document.querySelector(item.href)).filter((el) => el !== null)
-		);
+		let sectionObserver: IntersectionObserver | null = null;
+		const sectionEls = navItems
+			.map((item) => document.querySelector(item.href))
+			.filter((el): el is Element => el !== null);
 
 		if (sectionEls.length > 0) {
 			sectionObserver = new IntersectionObserver(
@@ -80,11 +80,7 @@
 		localStorage.setItem('theme', isDark ? 'dark' : 'light');
 	}
 
-	/**
-	 * @param {MouseEvent} e
-	 * @param {string} target
-	 */
-	function handleNavClick(e, target) {
+	function handleNavClick(e: MouseEvent, target: string) {
 		e.preventDefault();
 		smoothScrollTo(target);
 		mobileMenuOpen = false;

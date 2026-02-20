@@ -4,11 +4,7 @@
 
 	const stars = [1, 2, 3, 4, 5];
 
-	/**
-	 * @param {KeyboardEvent} e
-	 * @param {number} value
-	 */
-	function handleKeydown(e, value) {
+	function handleKeydown(e: KeyboardEvent, value: number) {
 		if (e.key === 'Enter' || e.key === ' ') {
 			e.preventDefault();
 			rating = value;

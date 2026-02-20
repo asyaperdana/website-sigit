@@ -1,11 +1,7 @@
-// @ts-check
-
 /**
  * Smooth scroll utility with custom easing
- * @param {string} targetId - Element ID to scroll to
- * @param {number} [offset=80] - Offset from top (default: 80px for navbar)
  */
-export function smoothScrollTo(targetId, offset = 80) {
+export function smoothScrollTo(targetId: string, offset = 80): void {
 	const target = document.querySelector(targetId);
 	if (!target) return;
 
@@ -19,49 +15,34 @@ export function smoothScrollTo(targetId, offset = 80) {
 
 /**
  * Throttle function to limit execution rate
- * @template {(...args: any[]) => any} T
- * @param {T} func - Function to throttle
- * @param {number} limit - Time limit in ms
- * @returns {T} Throttled function
  */
-export function throttle(func, limit) {
-	/** @type {boolean} */
+export function throttle<T extends (...args: unknown[]) => unknown>(func: T, limit: number): T {
 	let inThrottle = false;
-	// @ts-ignore
-	return function (...args) {
+	return function (this: unknown, ...args: unknown[]) {
 		if (!inThrottle) {
-			// @ts-ignore
 			func.apply(this, args);
 			inThrottle = true;
 			setTimeout(() => (inThrottle = false), limit);
 		}
-	};
+	} as T;
 }
 
 /**
  * Debounce function to delay execution
- * @template {(...args: any[]) => any} T
- * @param {T} func - Function to debounce
- * @param {number} delay - Delay in ms
- * @returns {T} Debounced function
  */
-export function debounce(func, delay) {
-	/** @type {ReturnType<typeof setTimeout> | undefined} */
-	let timeoutId;
-	// @ts-ignore
-	return function (...args) {
+export function debounce<T extends (...args: unknown[]) => unknown>(func: T, delay: number): T {
+	let timeoutId: ReturnType<typeof setTimeout> | undefined;
+	return function (this: unknown, ...args: unknown[]) {
 		clearTimeout(timeoutId);
-		// @ts-ignore
 		timeoutId = setTimeout(() => func.apply(this, args), delay);
-	};
+	} as T;
 }
 
 /**
  * Ripple effect for buttons
- * @param {MouseEvent} e - Click event
  */
-export function createRipple(e) {
-	const btn = /** @type {HTMLElement} */ (e.currentTarget);
+export function createRipple(e: MouseEvent): void {
+	const btn = e.currentTarget as HTMLElement;
 	if (!btn) return;
 
 	const rect = btn.getBoundingClientRect();
@@ -79,10 +60,11 @@ export function createRipple(e) {
 
 /**
  * Add reveal animation on scroll
- * @param {IntersectionObserverEntry[]} entries
- * @param {IntersectionObserver} observer
  */
-export function handleReveal(entries, observer) {
+export function handleReveal(
+	entries: IntersectionObserverEntry[],
+	observer: IntersectionObserver
+): void {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
 			entry.target.classList.add('reveal-active');

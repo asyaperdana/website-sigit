@@ -13,7 +13,15 @@
 	let showSuccess = $state(false);
 	let errorMessage = $state('');
 
-	let /* ts: any[] */ localReviews = $state([]);
+	interface Review {
+		id: number;
+		userName: string;
+		rating: number;
+		comment: string;
+		createdAt: string;
+	}
+
+	let localReviews = $state<Review[]>([]);
 
 	// Default/sample reviews to show initially if localStorage is empty
 	const defaultReviews = [
@@ -51,14 +59,10 @@
 		}
 	});
 
-	/**
-	 * Handle form submission client-side
-	 * @param {SubmitEvent} event
-	 */
-	async function handleSubmit(event) {
+	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 
-		const form = (event.target as HTMLFormElement);
+		const form = event.target as HTMLFormElement;
 		if (!form) return;
 
 		isSubmitting = true;
