@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 
 	let mouseX = $state(0);
@@ -9,8 +9,7 @@
 	let isClicking = $state(false);
 
 	onMount(() => {
-		/** @param {MouseEvent} e */
-		const handleMouseMove = (e) => {
+		const handleMouseMove = (e: MouseEvent) => {
 			mouseX = e.clientX;
 			mouseY = e.clientY;
 		};
@@ -23,9 +22,8 @@
 		};
 		requestAnimationFrame(animate);
 
-		/** @param {MouseEvent} e */
-		const handleMouseOver = (e) => {
-			const target = /** @type {HTMLElement} */ (e.target);
+		const handleMouseOver = (e: MouseEvent) => {
+			const target = (e.target as HTMLElement);
 			const isInteractive = target.closest(
 				"button, a, .portfolio-item, .glass, [role='button'], .skill-card"
 			);

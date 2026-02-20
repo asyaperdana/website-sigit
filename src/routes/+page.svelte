@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import Lenis from 'lenis';
 	import Navbar from '$lib/components/Navbar.svelte';
@@ -16,7 +16,7 @@
 	import LifeStatsTicker from '$lib/components/LifeStatsTicker.svelte';
 	import CustomCursor from '$lib/components/CustomCursor.svelte';
 	import VanillaTilt from 'vanilla-tilt';
-	import { setupKonamiCode, createConfetti } from '$lib/utils/quirky.js';
+	import { setupKonamiCode, createConfetti } from '$lib/utils/quirky';
 
 	let isScrolled = $state(false);
 	let showBackToTop = $state(false);
@@ -26,8 +26,7 @@
 		// Initialize Lenis
 		const lenis = new Lenis();
 
-		/** @param {number} time */
-		function raf(time) {
+		function raf(time: number) {
 			lenis.raf(time);
 			requestAnimationFrame(raf);
 		}
@@ -41,36 +40,11 @@
 		};
 		window.addEventListener('scroll', handleScroll);
 
-		const observerOptions = {
-			threshold: 0.05, // Lower threshold for better reliability
-			rootMargin: '0px 0px -10px 0px'
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('reveal-active');
-					observer.unobserve(entry.target);
-				}
-			});
-		}, observerOptions);
-
-		// Standard reveal elements
-		document.querySelectorAll('.reveal').forEach((el) => {
-			// Immediate reveal for elements already in viewport
-			const rect = el.getBoundingClientRect();
-			if (rect.top < window.innerHeight && rect.bottom >= 0) {
-				el.classList.add('reveal-active');
-			} else {
-				observer.observe(el);
-			}
-		});
-
 		// Initialize Tilt on desktop
 		if (window.innerWidth > 1024) {
-			const tiltElements = /** @type {HTMLElement[]} */ (
-				Array.from(document.querySelectorAll('.glass, .portfolio-item'))
-			);
+			const tiltElements = Array.from(
+				document.querySelectorAll('.glass, .portfolio-item')
+			) as HTMLElement[];
 			VanillaTilt.init(tiltElements, {
 				max: 5,
 				speed: 400,
@@ -116,7 +90,6 @@
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
-			observer.disconnect();
 			lenis.destroy();
 			konamiCleanup();
 		};
@@ -149,7 +122,7 @@
 		<Stats />
 		<Timeline />
 		<Skills />
-		<Portfolio onOpenModal={(/** @type {any} */ p) => (activeProject = p)} />
+		<Portfolio onOpenModal={(p: any) => (activeProject = p)} />
 		<ReviewSection />
 		<FAQ />
 		<Contact />

@@ -1,24 +1,20 @@
-<script>
+<script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
-	import { trapFocus } from '$lib/utils/a11y.js';
+	import { trapFocus } from '$lib/utils/a11y';
 
 	let { activeProject, onClose } = $props();
 
-	/** @type {HTMLElement | null} */
-	let dialogEl = $state(null);
-	/** @type {HTMLButtonElement | null} */
-	let closeBtnEl = $state(null);
-	/** @type {HTMLElement | null} */
-	let lastActiveEl = null;
-	/** @type {(() => void) | null} */
-	let cleanupTrap = null;
+	let /* ts: HTMLElement | null */ dialogEl = $state(null);
+	let /* ts: HTMLButtonElement | null */ closeBtnEl = $state(null);
+	let /* ts: HTMLElement | null */ lastActiveEl = null;
+	let /* ts: (() => void) | null */ cleanupTrap = null;
 
 	$effect(() => {
 		if (!activeProject) return;
 
 		// Store focus to restore after closing.
-		lastActiveEl = /** @type {HTMLElement | null} */ (document.activeElement);
+		lastActiveEl = (document.activeElement as HTMLElement | null);
 
 		// Trap focus after DOM is updated.
 		(async () => {
@@ -44,8 +40,7 @@
 		cleanupTrap?.();
 	});
 
-	/** @param {KeyboardEvent} e */
-	function handleKeydown(e) {
+	function handleKeydown(e: KeyboardEvent) {
 		if (e.key === 'Escape') onClose();
 	}
 </script>

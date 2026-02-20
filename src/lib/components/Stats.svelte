@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { onMount } from 'svelte';
-	import { createFloatingEmoji } from '$lib/utils/quirky.js';
+	import { createFloatingEmoji } from '$lib/utils/quirky';
 
-	let statsSection = $state();
+	let statsSection: HTMLElement | undefined = $state();
 
-	/** @type {Record<string, string[]>} */
-	const statEmojis = {
+	const statEmojis: Record<string, string[]> = {
 		'Projects Completed': ['🎉', '🚀', '✨', '🎯', '💪'],
 		'Client Satisfied': ['😍', '🥳', '👍', '🌟', '💯'],
 		'Matcha Dosage': ['🍵', '🍃', '💚', '☕', '🌿'],
@@ -28,13 +28,13 @@
 	function initCounters() {
 		if (!statsSection) return;
 		const counters = statsSection.querySelectorAll('.counter');
-		counters.forEach((/** @type {any} */ counter) => {
+		counters.forEach((counter: any) => {
 			if (!counter) return;
 			const target = +counter.getAttribute('data-target');
 			const duration = 2000;
 			const startTime = performance.now();
 
-			const update = (/** @type {number} */ currentTime) => {
+			const update = (currentTime: number) => {
 				const elapsed = currentTime - startTime;
 				const progress = Math.min(elapsed / duration, 1);
 				const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
@@ -51,11 +51,7 @@
 		});
 	}
 
-	/**
-	 * @param {MouseEvent} e
-	 * @param {string} label
-	 */
-	function handleStatClick(e, label) {
+	function handleStatClick(e: MouseEvent, label: keyof typeof statEmojis) {
 		const emojis = statEmojis[label];
 		if (!emojis) return;
 
@@ -64,7 +60,7 @@
 	}
 </script>
 
-<section bind:this={statsSection} class="py-24 px-6 reveal">
+<section bind:this={statsSection} class="py-24 px-6 reveal" use:reveal>
 	<div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
 		{#each [{ label: 'Projects Completed', target: '150', suffix: '+' }, { label: 'Client Satisfied', target: '99', suffix: '%' }, { label: 'Matcha Dosage', target: '2500', suffix: '' }, { label: 'Years Surviving', target: '12', suffix: '' }] as stat (stat.label)}
 			<div

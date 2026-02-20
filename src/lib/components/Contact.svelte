@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { onMount } from 'svelte';
-	import { createMagneticEffect } from '$lib/utils/magnetic.js';
+	import { createMagneticEffect } from '$lib/utils/magnetic';
 	import { fly } from 'svelte/transition';
 
 	let magneticBtn = $state();
@@ -20,7 +21,7 @@
 		e.preventDefault();
 		isSubmitting = true;
 
-		const formData = new FormData(/** @type {HTMLFormElement} */ (e.target));
+		const formData = new FormData((e.target as HTMLFormElement));
 		const data = {
 			nama: formData.get('nama'),
 			email: formData.get('email'),
@@ -35,7 +36,7 @@
 			showToast = true;
 
 			// Reset form
-			/** @type {HTMLFormElement} */ (e.target).reset();
+			(e.target as HTMLFormElement).reset();
 
 			// Hide toast after 4 seconds
 			setTimeout(() => {
@@ -53,7 +54,7 @@
 	}
 </script>
 
-<section id="contact" class="max-w-4xl mx-auto px-6 py-12 reveal kontak">
+<section id="contact" class="max-w-4xl mx-auto px-6 py-12 reveal kontak" use:reveal>
 	<div class="glass p-8">
 		<h2 class="text-2xl font-bold mb-8 text-center text-(--text)">Kontak Saya</h2>
 		<form class="space-y-4" onsubmit={handleSubmit}>

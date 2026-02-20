@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	/**
 	 * @param {Event} e
 	 */
@@ -11,7 +12,7 @@
 	}
 </script>
 
-<section id="faq" class="max-w-3xl mx-auto px-6 py-12 faq reveal">
+<section id="faq" class="max-w-3xl mx-auto px-6 py-12 faq reveal" use:reveal>
 	<h2 class="text-2xl font-bold mb-8 text-center text-[var(--text)]">
 		FAQ (Pertanyaan Netizen) 🤔
 	</h2>

@@ -1,4 +1,8 @@
-<section class="max-w-3xl mx-auto px-6 py-12 timeline reveal">
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
+<section class="max-w-3xl mx-auto px-6 py-12 timeline reveal" use:reveal>
 	<div class="glass p-8">
 		<h2 class="text-2xl font-bold mb-8 text-center text-[var(--text)] uppercase tracking-widest">
 			Riwayat Hidup

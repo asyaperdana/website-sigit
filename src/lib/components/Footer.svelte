@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 </script>
 
 <footer class="py-12 text-center text-(--text) opacity-40 text-sm">

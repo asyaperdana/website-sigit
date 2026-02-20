@@ -1,5 +1,6 @@
-<script>
-	import { getRandomTooltip } from '$lib/utils/quirky.js';
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+	import { getRandomTooltip } from '$lib/utils/quirky';
 
 	const skills = [
 		{ icon: 'fab fa-html5', color: 'text-orange-500', name: 'HTML5' },
@@ -10,21 +11,18 @@
 		{ icon: 'fab fa-git-alt', color: 'text-red-500', name: 'Git' }
 	];
 
-	/** @type {Record<string, string>} */
-	let tooltips = $state({});
+	let tooltips = $state<Record<string, string>>({});
 
-	/** @param {string} skillName */
-	function handleMouseEnter(skillName) {
+	function handleMouseEnter(skillName: string) {
 		tooltips[skillName] = getRandomTooltip(skillName);
 	}
 
-	/** @param {string} skillName */
-	function handleMouseLeave(skillName) {
+	function handleMouseLeave(skillName: string) {
 		tooltips[skillName] = '';
 	}
 </script>
 
-<section id="skills" class="max-w-4xl mx-auto px-6 py-12 reveal">
+<section id="skills" class="max-w-4xl mx-auto px-6 py-12 reveal" use:reveal>
 	<h2 class="text-2xl font-bold mb-8 text-center text-(--text)">Tech Stack / Senjata 🛠️</h2>
 	<div class="grid grid-cols-3 md:grid-cols-6 gap-6 text-center">
 		{#each skills as skill (skill.name)}

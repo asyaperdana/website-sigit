@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import StarRating from './StarRating.svelte';
 
 	let { review } = $props();

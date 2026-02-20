@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import StarRating from './StarRating.svelte';
@@ -12,8 +13,7 @@
 	let showSuccess = $state(false);
 	let errorMessage = $state('');
 
-	/** @type {any[]} */
-	let localReviews = $state([]);
+	let /* ts: any[] */ localReviews = $state([]);
 
 	// Default/sample reviews to show initially if localStorage is empty
 	const defaultReviews = [
@@ -58,7 +58,7 @@
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		const form = /** @type {HTMLFormElement} */ (event.target);
+		const form = (event.target as HTMLFormElement);
 		if (!form) return;
 
 		isSubmitting = true;
@@ -120,7 +120,7 @@
 	}
 </script>
 
-<section id="reviews" class="max-w-6xl mx-auto px-6 py-24 reveal">
+<section id="reviews" class="max-w-6xl mx-auto px-6 py-24 reveal" use:reveal>
 	<div class="text-center mb-16 space-y-4">
 		<h2 class="text-4xl md:text-5xl font-bold text-(--text) tracking-tighter">
 			Apa Kata <span

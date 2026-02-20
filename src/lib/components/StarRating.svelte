@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	let { rating = $bindable(0), readonly = false, size = 'text-2xl' } = $props();
 	let hoverRating = $state(0);
 
@@ -15,10 +15,8 @@
 		}
 	}
 
-	/** @param {number} value */
-	const selectRating = (value) => !readonly && (rating = value);
-	/** @param {number} value */
-	const setHoverRating = (value) => !readonly && (hoverRating = value);
+	const selectRating = (value: number) => !readonly && (rating = value);
+	const setHoverRating = (value: number) => !readonly && (hoverRating = value);
 </script>
 
 <div

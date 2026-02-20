@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	/* eslint-disable svelte/no-navigation-without-resolve */
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
-	import { smoothScrollTo } from '$lib/utils/animations.js';
+	import { smoothScrollTo } from '$lib/utils/animations';
 	import { fly } from 'svelte/transition';
 
 	let { isScrolled = $bindable(false) } = $props();
@@ -27,10 +27,9 @@
 		};
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
-		/** @type {IntersectionObserver | null} */
-		let sectionObserver = null;
-		const sectionEls = /** @type {Element[]} */ (
-			navItems.map((item) => document.querySelector(item.href)).filter((el) => el !== null)
+		let /* ts: IntersectionObserver | null */ sectionObserver = null;
+		const sectionEls = (
+			navItems.map((item as Element[]) => document.querySelector(item.href)).filter((el) => el !== null)
 		);
 
 		if (sectionEls.length > 0) {
@@ -63,8 +62,7 @@
 			document.body.classList.add('light');
 		}
 
-		/** @param {KeyboardEvent} e */
-		const handleKeydown = (e) => {
+		const handleKeydown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') mobileMenuOpen = false;
 		};
 		window.addEventListener('keydown', handleKeydown);

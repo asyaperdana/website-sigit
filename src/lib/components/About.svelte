@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { base } from '$app/paths';
-	import { createConfetti, wobbleElement } from '$lib/utils/quirky.js';
+	import { createConfetti, wobbleElement } from '$lib/utils/quirky';
 
 	let profilePicEl = $state();
 	let clickCount = $state(0);
@@ -46,7 +47,7 @@
 	}
 </script>
 
-<section id="about" class="max-w-5xl mx-auto px-6 py-16 reveal">
+<section id="about" class="max-w-5xl mx-auto px-6 py-16 reveal" use:reveal>
 	<div class="glass text-center p-8 md:p-12">
 		<button
 			onclick={handleEasterEgg}
