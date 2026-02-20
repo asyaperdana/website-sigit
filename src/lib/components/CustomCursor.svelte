@@ -23,7 +23,7 @@
 		requestAnimationFrame(animate);
 
 		const handleMouseOver = (e: MouseEvent) => {
-			const target = (e.target as HTMLElement);
+			const target = e.target as HTMLElement;
 			const isInteractive = target.closest(
 				"button, a, .portfolio-item, .glass, [role='button'], .skill-card"
 			);

@@ -27,10 +27,10 @@
 
 	function initCounters() {
 		if (!statsSection) return;
-		const counters = statsSection.querySelectorAll('.counter');
-		counters.forEach((counter: any) => {
+		const counters = statsSection.querySelectorAll<HTMLElement>('.counter');
+		counters.forEach((counter) => {
 			if (!counter) return;
-			const target = +counter.getAttribute('data-target');
+			const target = +(counter.getAttribute('data-target') ?? '0');
 			const duration = 2000;
 			const startTime = performance.now();
 

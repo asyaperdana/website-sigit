@@ -18,9 +18,15 @@
 	import VanillaTilt from 'vanilla-tilt';
 	import { setupKonamiCode, createConfetti } from '$lib/utils/quirky';
 
+	interface Project {
+		title: string;
+		img: string;
+		desc: string;
+	}
+
 	let isScrolled = $state(false);
 	let showBackToTop = $state(false);
-	let activeProject = $state(null);
+	let activeProject = $state<Project | null>(null);
 
 	onMount(() => {
 		// Initialize Lenis
@@ -122,7 +128,7 @@
 		<Stats />
 		<Timeline />
 		<Skills />
-		<Portfolio onOpenModal={(p: any) => (activeProject = p)} />
+		<Portfolio onOpenModal={(p: Project) => (activeProject = p)} />
 		<ReviewSection />
 		<FAQ />
 		<Contact />

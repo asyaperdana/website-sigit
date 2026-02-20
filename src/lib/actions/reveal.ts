@@ -1,4 +1,7 @@
-export function reveal(node: HTMLElement, options = { threshold: 0.05, rootMargin: '0px 0px -10px 0px' }) {
+export function reveal(
+	node: HTMLElement,
+	options = { threshold: 0.05, rootMargin: '0px 0px -10px 0px' }
+) {
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
